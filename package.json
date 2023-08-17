@@ -3,12 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "pb:gen": "./scripts/gen.sh user event order ticket badge partner"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "@grpc/grpc-js": "^1.8.15",
+    "@grpc/proto-loader": "^0.7.7",
+    "google-protobuf": "^3.21.2",
+    "grpc-tools": "^1.12.4"
   }
 }
