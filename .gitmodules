@@ -1,0 +1,3 @@
+[submodule "proto"]
+	path = proto
+	url = https://NextHope_Business_Solution@bitbucket.org/businesssolutionnexthope/proto.git
