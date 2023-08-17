@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "pb:gen": "./scripts/gen.sh user event order ticket badge partner"
+    "pb:gen": "./src/scripts/gen.sh user event order ticket badge partner"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
