@@ -59,6 +59,28 @@ function deserialize_user_UserId(buffer_arg) {
   return user_pb.UserId.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_user_UserLogin(arg) {
+  if (!(arg instanceof user_pb.UserLogin)) {
+    throw new Error('Expected argument of type user.UserLogin');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UserLogin(buffer_arg) {
+  return user_pb.UserLogin.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_UserLoginResponse(arg) {
+  if (!(arg instanceof user_pb.UserLoginResponse)) {
+    throw new Error('Expected argument of type user.UserLoginResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UserLoginResponse(buffer_arg) {
+  return user_pb.UserLoginResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var UserServiceService = exports.UserServiceService = {
   getUser: {
@@ -104,6 +126,17 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_user_PasswordUpdate,
     responseSerialize: serialize_user_Message,
     responseDeserialize: deserialize_user_Message,
+  },
+  login: {
+    path: '/user.UserService/login',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UserLogin,
+    responseType: user_pb.UserLoginResponse,
+    requestSerialize: serialize_user_UserLogin,
+    requestDeserialize: deserialize_user_UserLogin,
+    responseSerialize: serialize_user_UserLoginResponse,
+    responseDeserialize: deserialize_user_UserLoginResponse,
   },
 };
 
