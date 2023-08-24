@@ -9,7 +9,8 @@ exports.login = async (req, res) => {
 
         return res.status(statusCode["OK"]).json({ 
             access_token: authToken,
-            // expires_in: process.env.JWT_EXPIRATION,
+            //TODO: define expiration time, here is just an example
+            expires_in: 3600//process.env.JWT_EXPIRATION,
          });
     } catch (error) {
         console.log("Error controller login user : ", error);
