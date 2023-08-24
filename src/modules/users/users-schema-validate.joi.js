@@ -12,7 +12,7 @@ const userCreateSchema = Joi.object({
 const userLoginSchema = Joi.object({
     login : Joi.string().required(),
     password : Joi.string()
-    .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/).min(8)
+    //.regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/).min(8)
     .required(),
 });
 
