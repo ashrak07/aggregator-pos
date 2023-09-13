@@ -1398,8 +1398,7 @@ proto.user.UserLogin.prototype.toObject = function(opt_includeInstance) {
 proto.user.UserLogin.toObject = function(includeInstance, msg) {
   var f, obj = {
     email: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    role: jspb.Message.getFieldWithDefault(msg, 3, "")
+    password: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1444,10 +1443,6 @@ proto.user.UserLogin.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setPassword(value);
       break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setRole(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1491,13 +1486,6 @@ proto.user.UserLogin.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getRole();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
 };
 
 
@@ -1534,24 +1522,6 @@ proto.user.UserLogin.prototype.getPassword = function() {
  */
 proto.user.UserLogin.prototype.setPassword = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string role = 3;
- * @return {string}
- */
-proto.user.UserLogin.prototype.getRole = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.user.UserLogin} returns this
- */
-proto.user.UserLogin.prototype.setRole = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

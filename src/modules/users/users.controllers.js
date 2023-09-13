@@ -5,12 +5,10 @@ const statusCode = require("../../constants/status-code.constants");
 exports.login = async (req, res) => {
     try {
         const authToken =  await userService.login(req.body);
-        //console.log("email and password : ", req.body.email, req.body.password);
 
         return res.status(statusCode["OK"]).json({ 
             access_token: authToken,
-            //TODO: define expiration time, here is just an example
-            expires_in: 3600//process.env.JWT_EXPIRATION,
+            expires_in: 3600,
          });
     } catch (error) {
         console.log("Error controller login user : ", error);

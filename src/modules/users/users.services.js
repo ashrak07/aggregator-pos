@@ -1,7 +1,5 @@
 const clientGrpc = require("../../grpc-clients/client.grpc");
 const {UserLogin} = require("../../generated_pb/user_pb");
-const {UserServiceClient} = require("../../generated_pb/user_grpc_pb");
-const grpc = require("@grpc/grpc-js");
 
 exports.login = async (user) => {
   console.log("invoking login");

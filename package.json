@@ -4,17 +4,19 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "pb:gen": "./scripts/gen.sh user event order ticket badge partner"
+    "pb:gen": "./scripts/gen.sh user event order ticket badge partner shop"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "joi": "^17.9.2",
-    "morgan": "~1.9.1",
     "@grpc/grpc-js": "^1.8.15",
     "@grpc/proto-loader": "^0.7.7",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.3.1",
+    "express": "~4.16.1",
     "google-protobuf": "^3.21.2",
-    "grpc-tools": "^1.12.4"
+    "grpc-tools": "^1.12.4",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "~1.9.1"
   }
 }
