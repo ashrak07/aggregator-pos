@@ -11,17 +11,28 @@ exports.getShopByUserId = async (shop_req) => {
 
     const list = [];
 
-    /*clientGrpc.getShopInstance().getShopByUserId(req, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            return(err);
-        } 
-    })*/
-    
     return new Promise((resolve, reject) => {
         const call = clientGrpc.getShopInstance().getShopByUserId(req);
         call.on("data", (res) => {
-            list.push(res.array);
+
+            const shop = {
+            id: res.getId(),
+            name: res.getName(),
+            address: res.getAddress(),
+            city: res.getCity(),
+            opening_hour: res.getOpeningHour(),
+            closing_hour: res.getClosingHour(),
+            phone_number: res.getPhoneNumber(),
+            active: res.getActive(),
+            zip_code: res.getZipCode(),
+            creator_uid: res.getCreatorUid(),
+            parent_creator_uid: res.getParentCreatorUid(),
+            show_lastname: res.getShowLastname(),
+            show_firstname: res.getShowFirstname(),
+            show_email: res.getShowEmail(),
+            show_phone: res.getShowPhone(),
+        }
+            list.push(shop);
         });
 
         call.on("end", () => {
