@@ -14,4 +14,3 @@ module.exports.listShopByUserIdValidate = async (req, res, next) => {
         return res.status(statusCode["UNPROCESSABLE_ENTITY"]).send(error.details[0].message);
     }
 };
-
