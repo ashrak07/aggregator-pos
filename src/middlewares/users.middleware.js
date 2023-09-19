@@ -19,14 +19,11 @@ module.exports.usersLoginDataValidate = async (req, res, next) => {
 
 module.exports.checkSessionValidate = async (req, res, next) => {
 
-    const token = req.headers.authorization.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const date_now = new Date();
-    const date_exp = new Date((decoded.iat * 1000) + (process.env.JWT_EXPIRATION * 1000));
-
-    if (date_now < date_exp) {
-        next();
-    } else {
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        console.log("decoded: ", decoded);
+    } catch (error) {
         return res.status(statusCode["UNAUTHORIZED"]).json({message : "ERROR CLIENT", errorMessage : "Session expired"});
     }
 
