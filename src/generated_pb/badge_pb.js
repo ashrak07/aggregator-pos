@@ -205,8 +205,7 @@ proto.badge.CreateBadgeRequest.toObject = function(includeInstance, msg) {
     email: jspb.Message.getFieldWithDefault(msg, 17, ""),
     jobTitle: jspb.Message.getFieldWithDefault(msg, 18, ""),
     color: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    plannerId: jspb.Message.getFieldWithDefault(msg, 20, 0),
-    checked: jspb.Message.getBooleanFieldWithDefault(msg, 21, false)
+    plannerId: jspb.Message.getFieldWithDefault(msg, 20, 0)
   };
 
   if (includeInstance) {
@@ -322,10 +321,6 @@ proto.badge.CreateBadgeRequest.deserializeBinaryFromReader = function(msg, reade
     case 20:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPlannerId(value);
-      break;
-    case 21:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setChecked(value);
       break;
     default:
       reader.skipField();
@@ -493,13 +488,6 @@ proto.badge.CreateBadgeRequest.serializeBinaryToWriter = function(message, write
   if (f !== 0) {
     writer.writeInt32(
       20,
-      f
-    );
-  }
-  f = message.getChecked();
-  if (f) {
-    writer.writeBool(
-      21,
       f
     );
   }
@@ -863,24 +851,6 @@ proto.badge.CreateBadgeRequest.prototype.getPlannerId = function() {
  */
 proto.badge.CreateBadgeRequest.prototype.setPlannerId = function(value) {
   return jspb.Message.setProto3IntField(this, 20, value);
-};
-
-
-/**
- * optional bool checked = 21;
- * @return {boolean}
- */
-proto.badge.CreateBadgeRequest.prototype.getChecked = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 21, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.badge.CreateBadgeRequest} returns this
- */
-proto.badge.CreateBadgeRequest.prototype.setChecked = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 21, value);
 };
 
 
@@ -1256,8 +1226,7 @@ proto.badge.BadgeResponse.toObject = function(includeInstance, msg) {
     licencePlate: jspb.Message.getFieldWithDefault(msg, 18, ""),
     email: jspb.Message.getFieldWithDefault(msg, 19, ""),
     jobTitle: jspb.Message.getFieldWithDefault(msg, 20, ""),
-    color: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    checked: jspb.Message.getBooleanFieldWithDefault(msg, 22, false)
+    color: jspb.Message.getFieldWithDefault(msg, 21, "")
   };
 
   if (includeInstance) {
@@ -1377,10 +1346,6 @@ proto.badge.BadgeResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 21:
       var value = /** @type {string} */ (reader.readString());
       msg.setColor(value);
-      break;
-    case 22:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setChecked(value);
       break;
     default:
       reader.skipField();
@@ -1555,13 +1520,6 @@ proto.badge.BadgeResponse.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       21,
-      f
-    );
-  }
-  f = message.getChecked();
-  if (f) {
-    writer.writeBool(
-      22,
       f
     );
   }
@@ -1943,24 +1901,6 @@ proto.badge.BadgeResponse.prototype.getColor = function() {
  */
 proto.badge.BadgeResponse.prototype.setColor = function(value) {
   return jspb.Message.setProto3StringField(this, 21, value);
-};
-
-
-/**
- * optional bool checked = 22;
- * @return {boolean}
- */
-proto.badge.BadgeResponse.prototype.getChecked = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 22, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.badge.BadgeResponse} returns this
- */
-proto.badge.BadgeResponse.prototype.setChecked = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 22, value);
 };
 
 

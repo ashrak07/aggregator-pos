@@ -70,6 +70,17 @@ function deserialize_ticket_NumberOfTicketsResponse(buffer_arg) {
   return ticket_pb.NumberOfTicketsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ticket_TicketIdRequest(arg) {
+  if (!(arg instanceof ticket_pb.TicketIdRequest)) {
+    throw new Error('Expected argument of type ticket.TicketIdRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ticket_TicketIdRequest(buffer_arg) {
+  return ticket_pb.TicketIdRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ticket_TicketQuery(arg) {
   if (!(arg instanceof ticket_pb.TicketQuery)) {
     throw new Error('Expected argument of type ticket.TicketQuery');
@@ -79,17 +90,6 @@ function serialize_ticket_TicketQuery(arg) {
 
 function deserialize_ticket_TicketQuery(buffer_arg) {
   return ticket_pb.TicketQuery.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_ticket_TicketRequest(arg) {
-  if (!(arg instanceof ticket_pb.TicketRequest)) {
-    throw new Error('Expected argument of type ticket.TicketRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_ticket_TicketRequest(buffer_arg) {
-  return ticket_pb.TicketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ticket_TicketResponse(arg) {
@@ -119,7 +119,7 @@ var TicketService = exports.TicketService = {
   getTickets: {
     path: '/ticket.Ticket/GetTickets',
     requestStream: false,
-    responseStream: true,
+    responseStream: false,
     requestType: ticket_pb.TicketQuery,
     responseType: ticket_pb.TicketResponse,
     requestSerialize: serialize_ticket_TicketQuery,
@@ -131,10 +131,10 @@ var TicketService = exports.TicketService = {
     path: '/ticket.Ticket/GetTicketById',
     requestStream: false,
     responseStream: false,
-    requestType: ticket_pb.TicketRequest,
+    requestType: ticket_pb.TicketIdRequest,
     responseType: ticket_pb.TicketResponse,
-    requestSerialize: serialize_ticket_TicketRequest,
-    requestDeserialize: deserialize_ticket_TicketRequest,
+    requestSerialize: serialize_ticket_TicketIdRequest,
+    requestDeserialize: deserialize_ticket_TicketIdRequest,
     responseSerialize: serialize_ticket_TicketResponse,
     responseDeserialize: deserialize_ticket_TicketResponse,
   },
@@ -149,8 +149,8 @@ var TicketService = exports.TicketService = {
     responseSerialize: serialize_ticket_NumberOfTicketsResponse,
     responseDeserialize: deserialize_ticket_NumberOfTicketsResponse,
   },
-  getEntry: {
-    path: '/ticket.Ticket/GetEntry',
+  checkQrCode: {
+    path: '/ticket.Ticket/CheckQrCode',
     requestStream: false,
     responseStream: false,
     requestType: ticket_pb.EntryRequest,

@@ -5,7 +5,7 @@ const shopMiddleware = require("../../middlewares/shops.middleware");
 const usersMiddleware = require("../../middlewares/users.middleware");
 
 router.get(
-    "/users/:user_id",
+    "/users/:user_id/:page?/:nb?",
     shopMiddleware.listShopByUserIdValidate,
     usersMiddleware.checkSessionValidate,
     shopControllers.getShopByUserId

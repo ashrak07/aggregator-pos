@@ -3,7 +3,11 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.getShopByUserId = async (req, res) => {
     try {
-        const ListShop = await shopService.getShopByUserId(req.params.user_id);
+        const user_id = req.params.user_id;
+        const nb = req.params.nb;
+        const page = req.params.page;
+
+        const ListShop = await shopService.getShopByUserId(user_id,nb,page);
         return res.status(statusCode["OK"]).json(ListShop);
     } catch (error) {
         console.log("Error controller getShopByUserId : ", error);

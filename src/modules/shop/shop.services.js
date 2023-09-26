@@ -1,43 +1,50 @@
 const clientGrpc = require("../../grpc-clients/client.grpc");
 const {UserId} = require("../../generated_pb/shop_pb");
+const {ListShopUserIdRequest} = require("../../generated_pb/shop_pb");
 
-exports.getShopByUserId = async (shop_req) => {
+exports.getShopByUserId = async (shop_req,nb,page) => {
     console.log("invoking getShopByUserId");
     console.log("userId: ", shop_req);
+    console.log("nb: ", nb);
+    console.log("page: ", page);
     
-    const req =  new UserId()
-        .setUserId(shop_req);
-    console.log("req: ", req.getUserId());
+    const req =  new ListShopUserIdRequest()
+        .setUserId(shop_req)
+        .setNb(nb)
+        .setPage(page);
+    console.log("req: ", req);
 
     const list = [];
 
     return new Promise((resolve, reject) => {
-        const call = clientGrpc.getShopInstance().getShopByUserId(req);
-        call.on("data", (res) => {
+        const call = clientGrpc.getShopInstance().getShopByUserId(req, (err, res) => {
+            if (!err) {
+                const shops = res.getShopsList().map((shop) => ({
+                    name: shop.getName(),
+                    id: shop.getId(),
+                    address: shop.getAddress(),
+                    city: shop.getCity(),
+                    opening_hour: shop.getOpeningHour(),
+                    closing_hour: shop.getClosingHour(),
+                    phone_number: shop.getPhoneNumber(),
+                    active: shop.getActive(),
+                    zip_code: shop.getZipCode(),
+                    creator_uid: shop.getCreatorUid(),
+                    parent_creator_uid: shop.getParentCreatorUid(),
+                    show_lastname: shop.getShowLastname(),
+                    show_firstname: shop.getShowFirstname(),
+                    show_email: shop.getShowEmail(),
+                    show_phone: shop.getShowPhone(),
+                }));
 
-            const shop = {
-            id: res.getId(),
-            name: res.getName(),
-            address: res.getAddress(),
-            city: res.getCity(),
-            opening_hour: res.getOpeningHour(),
-            closing_hour: res.getClosingHour(),
-            phone_number: res.getPhoneNumber(),
-            active: res.getActive(),
-            zip_code: res.getZipCode(),
-            creator_uid: res.getCreatorUid(),
-            parent_creator_uid: res.getParentCreatorUid(),
-            show_lastname: res.getShowLastname(),
-            show_firstname: res.getShowFirstname(),
-            show_email: res.getShowEmail(),
-            show_phone: res.getShowPhone(),
-        }
-            list.push(shop);
+                resolve(shops);
+            }
+            else{
+                console.log("Error getShopByUserId: ", err);
+                reject(err);
+            }
         });
-
-        call.on("end", () => {
-            resolve(list);
-        });
+        
     });
     
     

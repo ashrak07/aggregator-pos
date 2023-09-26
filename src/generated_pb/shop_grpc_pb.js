@@ -3,18 +3,6 @@
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var shop_pb = require('./shop_pb.js');
-var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
-
-function serialize_google_protobuf_Empty(arg) {
-  if (!(arg instanceof google_protobuf_empty_pb.Empty)) {
-    throw new Error('Expected argument of type google.protobuf.Empty');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_google_protobuf_Empty(buffer_arg) {
-  return google_protobuf_empty_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
-}
 
 function serialize_shop_EventShopCreate(arg) {
   if (!(arg instanceof shop_pb.EventShopCreate)) {
@@ -25,6 +13,39 @@ function serialize_shop_EventShopCreate(arg) {
 
 function deserialize_shop_EventShopCreate(buffer_arg) {
   return shop_pb.EventShopCreate.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_shop_ListShop(arg) {
+  if (!(arg instanceof shop_pb.ListShop)) {
+    throw new Error('Expected argument of type shop.ListShop');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_shop_ListShop(buffer_arg) {
+  return shop_pb.ListShop.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_shop_ListShopRequest(arg) {
+  if (!(arg instanceof shop_pb.ListShopRequest)) {
+    throw new Error('Expected argument of type shop.ListShopRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_shop_ListShopRequest(buffer_arg) {
+  return shop_pb.ListShopRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_shop_ListShopUserIdRequest(arg) {
+  if (!(arg instanceof shop_pb.ListShopUserIdRequest)) {
+    throw new Error('Expected argument of type shop.ListShopUserIdRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_shop_ListShopUserIdRequest(buffer_arg) {
+  return shop_pb.ListShopUserIdRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_shop_Message(arg) {
@@ -71,17 +92,6 @@ function deserialize_shop_ShopId(buffer_arg) {
   return shop_pb.ShopId.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_shop_UserId(arg) {
-  if (!(arg instanceof shop_pb.UserId)) {
-    throw new Error('Expected argument of type shop.UserId');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_shop_UserId(buffer_arg) {
-  return shop_pb.UserId.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_shop_UserShopCreate(arg) {
   if (!(arg instanceof shop_pb.UserShopCreate)) {
     throw new Error('Expected argument of type shop.UserShopCreate');
@@ -120,13 +130,13 @@ var ShopServiceService = exports.ShopServiceService = {
   listShop: {
     path: '/shop.ShopService/listShop',
     requestStream: false,
-    responseStream: true,
-    requestType: google_protobuf_empty_pb.Empty,
-    responseType: shop_pb.Shop,
-    requestSerialize: serialize_google_protobuf_Empty,
-    requestDeserialize: deserialize_google_protobuf_Empty,
-    responseSerialize: serialize_shop_Shop,
-    responseDeserialize: deserialize_shop_Shop,
+    responseStream: false,
+    requestType: shop_pb.ListShopRequest,
+    responseType: shop_pb.ListShop,
+    requestSerialize: serialize_shop_ListShopRequest,
+    requestDeserialize: deserialize_shop_ListShopRequest,
+    responseSerialize: serialize_shop_ListShop,
+    responseDeserialize: deserialize_shop_ListShop,
   },
   updateShop: {
     path: '/shop.ShopService/updateShop',
@@ -186,13 +196,13 @@ var ShopServiceService = exports.ShopServiceService = {
   getShopByUserId: {
     path: '/shop.ShopService/getShopByUserId',
     requestStream: false,
-    responseStream: true,
-    requestType: shop_pb.UserId,
-    responseType: shop_pb.Shop,
-    requestSerialize: serialize_shop_UserId,
-    requestDeserialize: deserialize_shop_UserId,
-    responseSerialize: serialize_shop_Shop,
-    responseDeserialize: deserialize_shop_Shop,
+    responseStream: false,
+    requestType: shop_pb.ListShopUserIdRequest,
+    responseType: shop_pb.ListShop,
+    requestSerialize: serialize_shop_ListShopUserIdRequest,
+    requestDeserialize: deserialize_shop_ListShopUserIdRequest,
+    responseSerialize: serialize_shop_ListShop,
+    responseDeserialize: deserialize_shop_ListShop,
   },
 };
 
