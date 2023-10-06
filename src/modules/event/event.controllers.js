@@ -1,20 +1,21 @@
-const shopService = require('./shop.services');
+const eventService = require('./event.services');
 const statusCode = require("../../constants/status-code.constants");
 
-exports.getShopByUserId = async (req, res) => {
+exports.getEventByShopId = async (req, res) => {
     try {
-        const user_id = req.params.user_id;
+        const shop_id = req.params.shop_id;
         const nb = req.params.nb;
         const page = req.params.page;
 
-        const ListShop = await shopService.getShopByUserId(user_id,nb,page);
+        const ListEvent = await eventService.getEventByShopId(shop_id,nb,page);
+
         const response = {
             "message": "session ok",
-            "data": ListShop
+            "data": ListEvent
         }
         return res.status(statusCode["OK"]).json(response);
     } catch (error) {
-        console.log("Error controller getShopByUserId : ", error);
+        console.log("Error controller getEventByShopId : ", error);
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
-}
+};

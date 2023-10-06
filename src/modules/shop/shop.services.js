@@ -14,7 +14,6 @@ exports.getShopByUserId = async (shop_req,nb,page) => {
         .setPage(page);
     console.log("req: ", req);
 
-    const list = [];
 
     return new Promise((resolve, reject) => {
         const call = clientGrpc.getShopInstance().getShopByUserId(req, (err, res) => {

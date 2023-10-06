@@ -1,20 +1,20 @@
-const shopService = require('./shop.services');
+const ticketService = require('./ticket.services');
 const statusCode = require("../../constants/status-code.constants");
 
-exports.getShopByUserId = async (req, res) => {
+exports.getTicketTypes = async (req, res) => {
     try {
-        const user_id = req.params.user_id;
-        const nb = req.params.nb;
+        const id = req.params.id;
         const page = req.params.page;
 
-        const ListShop = await shopService.getShopByUserId(user_id,nb,page);
+        const ListTickets = await ticketService.getTicketTypes(id,page);
+
         const response = {
             "message": "session ok",
-            "data": ListShop
+            "data": ListTickets
         }
         return res.status(statusCode["OK"]).json(response);
     } catch (error) {
-        console.log("Error controller getShopByUserId : ", error);
+        console.log("Error controller getTicketTypes : ", error);
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
-}
+};

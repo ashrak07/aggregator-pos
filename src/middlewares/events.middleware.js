@@ -1,13 +1,13 @@
-const { userIdSchema,shopIdSchema } = require('../modules/shop/shop-schema-validate.joi');
+const { shopIdSchema } = require('../modules/event/event-schema-validate.joi');
 const statusCode = require("../constants/status-code.constants");
 
-module.exports.listShopByUserIdValidate = async (req, res, next) => {
+module.exports.listEventByShopIdValidate = async (req, res, next) => {
     try {
         const id = { 
-            user_id: req.params.user_id
+            shop_id: req.params.shop_id
         };
 
-        await userIdSchema.validateAsync(id);
+        await shopIdSchema.validateAsync(id);
 
         next();
     } catch (error) {
