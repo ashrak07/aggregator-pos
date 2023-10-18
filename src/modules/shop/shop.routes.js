@@ -6,15 +6,15 @@ const shopMiddleware = require("../../middlewares/shops.middleware");
 const usersMiddleware = require("../../middlewares/users.middleware");
 const eventMiddleware = require("../../middlewares/events.middleware");
 
-router.get(
-    "/users/:user_id/:page?/:nb?",
-    shopMiddleware.listShopByUserIdValidate,
+router.post(
+    "/users/:page?/:nb?",
+    //shopMiddleware.listShopByUserIdValidate,
     usersMiddleware.checkSessionValidate,
     shopControllers.getShopByUserId
   );
 
-router.get(
-    "/events/:shop_id/:page?/:nb?",
+router.post(
+    "/events/:page?/:nb?",
     eventMiddleware.listEventByShopIdValidate,
     usersMiddleware.checkSessionValidate,
     eventControllers.getEventByShopId

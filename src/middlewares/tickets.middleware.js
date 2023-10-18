@@ -4,7 +4,7 @@ const statusCode = require("../constants/status-code.constants");
 module.exports.listTicketTypesValidate = async (req, res, next) => {
     try {
         const id = { 
-            event_id: req.params.id
+            event_id: req.body.event_id
         };
 
         await eventIdSchema.validateAsync(id);

@@ -3,7 +3,7 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.getEventByShopId = async (req, res) => {
     try {
-        const shop_id = req.params.shop_id;
+        const shop_id = req.body.shop_id;
         const nb = req.params.nb;
         const page = req.params.page;
 

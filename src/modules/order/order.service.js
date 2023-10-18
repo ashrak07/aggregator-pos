@@ -1,5 +1,8 @@
 const grpcClient = require("../../grpc-clients/client.grpc");
 const {CreateRequest} = require("../../generated_pb/order_pb");
+const {OrderQuery} = require("../../generated_pb/order_pb");
+const {UpdateRequest} = require("../../generated_pb/order_pb");
+const {DeleteRequest} = require("../../generated_pb/order_pb");
 
 exports.createOrder = async (order_req) => {
     console.log("invoking createOrder");
@@ -7,13 +10,13 @@ exports.createOrder = async (order_req) => {
     
     const req =  new CreateRequest()
         .setName(order_req.name)
-        .setPartnerid(order_req.partnerId)
+        .setPartnerId(order_req.partnerId)
         .setState(order_req.state)
-        .setDateorder(order_req.dateOrder)
-        .setCreatedate(order_req.createDate)
-        .setCreateuid(order_req.createUid)
-        .setWritedate(order_req.writeDate)
-        .setAmounttotal(order_req.amountTotal)
+        .setDateOrder(order_req.dateOrder)
+        .setCreateDate(order_req.createDate)
+        .setCreateUid(order_req.createUid)
+        .setWriteDate(order_req.writeDate )
+        .setAmountTotal(order_req.amountTotal)
         .setNote(order_req.note)
         ;
     console.log("req: ", req);
@@ -25,13 +28,13 @@ exports.createOrder = async (order_req) => {
                 const order_res = {
                     id: res.getId(),
                     name: res.getName(),
-                    partnerId: res.getPartnerid(),
+                    partnerId: res.getPartnerId(),
                     state: res.getState(),
-                    dateOrder: res.getDateorder(),
-                    createDate: res.getCreatedate(),
-                    createUid: res.getCreateuid(),
-                    writeDate: res.getWritedate(),
-                    amountTotal: res.getAmounttotal(),
+                    dateOrder: res.getDateOrder(),
+                    createDate: res.getCreateDate(),
+                    createUid: res.getCreateUid(),
+                    writeDate: res.getWriteDate(),
+                    amountTotal: res.getAmountTotal(),
                     note: res.getNote(),
                 };
                 resolve(order_res);
@@ -46,3 +49,133 @@ exports.createOrder = async (order_req) => {
     
 
 }
+
+exports.getOrders = async (id) => {
+    console.log("invoking getOrder");
+
+    const req = new OrderQuery()
+    .setId(id);
+
+    console.log("returning promise");
+    return new Promise((resolve, reject) => {
+        const call = grpcClient.getOrderInstance().getOrders(req, (err, res) => {
+            if (!err) {
+                const orders = res.getOrderList().map((order) => ({
+                    id: order.getId(),
+                    name: order.getName(),
+                    partnerId: order.getPartnerId(),
+                    state: order.getState(),
+                    dateOrder: order.getDateOrder(),
+                    createDate: order.getCreateDate(),
+                    createUid: order.getCreateUid(),
+                    writeDate: order.getWriteDate(),
+                    amountTotal: order.getAmountTotal(),
+                    note: order.getNote(),
+                }));
+
+                resolve(orders);
+            }
+            else{
+                console.log("Error getOrder: ", err);
+                reject(err);
+            }
+        });
+    });
+
+};
+
+exports.getOrdersByCreateUid = async (id) => {
+    console.log("invoking getOrder");
+
+    const req = new OrderQuery()
+    .setId(id);
+
+    console.log("returning promise");
+    return new Promise((resolve, reject) => {
+        const call = grpcClient.getOrderInstance().getOrdersByCreateUid(req, (err, res) => {
+            if (!err) {
+                const orders = res.getOrderList().map((order) => ({
+                    id: order.getId(),
+                    name: order.getName(),
+                    partnerId: order.getPartnerId(),
+                    state: order.getState(),
+                    dateOrder: order.getDateOrder(),
+                    createDate: order.getCreateDate(),
+                    createUid: order.getCreateUid(),
+                    writeDate: order.getWriteDate(),
+                    amountTotal: order.getAmountTotal(),
+                    note: order.getNote(),
+                }));
+
+                resolve(orders);
+            }
+            else{
+                console.log("Error getOrder: ", err);
+                reject(err);
+            }
+        });
+    });
+
+};
+
+exports.updateOrder = async (order_req) => {
+    console.log('invoking updateOrder');
+
+    const req = new UpdateRequest()
+    .setId(order_req.id)
+    .setName(order_req.name)
+    .setPartnerId(order_req.partnerId)
+    .setState(order_req.state)
+    .setDateOrder(order_req.dateOrder)
+    .setCreateDate(order_req.createDate)
+    .setCreateUid(order_req.createUid)
+    .setWriteDate(order_req.writeDate)
+    .setAmountTotal(order_req.amountTotal)
+    .setNote(order_req.note);
+
+    return new Promise((resolve, reject) => {
+        grpcClient.getOrderInstance().updateOrder(req, (err, res) => {
+            if (!err) {
+                const order_res = {
+                    id: res.getId(),
+                    name: res.getName(),
+                    partnerId: res.getPartnerId(),
+                    state: res.getState(),
+                    dateOrder: res.getDateOrder(),
+                    createDate: res.getCreateDate(),
+                    createUid: res.getCreateUid(),
+                    writeDate: res.getWriteDate(),
+                    amountTotal: res.getAmountTotal(),
+                    note: res.getNote(),
+                };
+                resolve(order_res);
+            }
+            else{
+                console.log("Error updateOrder: ", err);
+                reject(err);
+            }
+        });
+    });
+}
+
+exports.deleteOrder = async (id) => {
+    console.log('invoking deleteOrder');
+
+    const req = new DeleteRequest()
+    .setId(id);
+
+    return new Promise((resolve, reject) => {
+        grpcClient.getOrderInstance().deleteOrder(req, (err, res) => {
+            if (!err) {
+                const order_res = {
+                    id: res.getId(),
+                };
+                resolve(order_res);
+            }
+            else{
+                console.log("Error deleteOrder: ", err);
+                reject(err);
+            }
+        });
+    });
+};

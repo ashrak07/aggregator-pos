@@ -10,6 +10,7 @@ var usersRouter = require('./src/modules/users/users.routes');
 var shopRouter = require('./src/modules/shop/shop.routes');
 var eventRouter = require('./src/modules/event/event.routes');
 var orderRouter = require('./src/modules/order/order.routes');
+var orderlineRouter = require('./src/modules/orderline/orderline.routes');
 
 var app = express();
 
@@ -24,5 +25,6 @@ app.use('/users', usersRouter);
 app.use('/shops', shopRouter);
 app.use('/events', eventRouter);
 app.use('/orders', orderRouter);
+app.use('/orderlines', orderlineRouter);
 
 module.exports = app;

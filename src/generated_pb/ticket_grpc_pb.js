@@ -70,6 +70,17 @@ function deserialize_ticket_NumberOfTicketsResponse(buffer_arg) {
   return ticket_pb.NumberOfTicketsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ticket_Order(arg) {
+  if (!(arg instanceof ticket_pb.Order)) {
+    throw new Error('Expected argument of type ticket.Order');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ticket_Order(buffer_arg) {
+  return ticket_pb.Order.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ticket_TicketIdRequest(arg) {
   if (!(arg instanceof ticket_pb.TicketIdRequest)) {
     throw new Error('Expected argument of type ticket.TicketIdRequest');
@@ -159,6 +170,17 @@ var TicketService = exports.TicketService = {
     requestDeserialize: deserialize_ticket_EntryRequest,
     responseSerialize: serialize_ticket_EntryResponse,
     responseDeserialize: deserialize_ticket_EntryResponse,
+  },
+  createOrderTicket: {
+    path: '/ticket.Ticket/CreateOrderTicket',
+    requestStream: false,
+    responseStream: false,
+    requestType: ticket_pb.Order,
+    responseType: ticket_pb.TicketResponse,
+    requestSerialize: serialize_ticket_Order,
+    requestDeserialize: deserialize_ticket_Order,
+    responseSerialize: serialize_ticket_TicketResponse,
+    responseDeserialize: deserialize_ticket_TicketResponse,
   },
 };
 

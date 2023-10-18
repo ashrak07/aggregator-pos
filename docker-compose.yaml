@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/node/app
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    ports:
+      - $NODE_LOCAL_PORT:$PORT
+    command: npm start
+    environment:
+      - JWT_SECRET_KEY=$JWT_SECRET_KEY
+    stdin_open: true
+    tty: true
+    networks:
+      - pos-network
+
+networks:
+  pos-network:
+    external: true

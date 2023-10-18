@@ -1,53 +1,38 @@
-const orderService = require('./order.service');
+const orderlineService = require('./orderline.services');
 const statusCode = require("../../constants/status-code.constants");
 
-exports.createOrder = async (req, res) => {
+exports.createOrderline = async (req, res) => {
     try {
-        const order = await orderService.createOrder(req.body);
+        const order = await orderlineService.createOrderline(req.body);
         const response = {
             "message": "session ok",
             "data": order
         }
         return res.status(statusCode["OK"]).json(response);
     } catch (error) {
-        console.log("Error controller createOrder : ", error);
+        console.log("Error controller createOrderline : ", error);
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
-};
+}
 
-exports.getOrders = async (req, res) => {
+exports.getOrderlinesByOrderId = async (req, res) => {
     try {
-        const id = req.params.id;
-        const orders = await orderService.getOrders(id);
+        const id = req.body.order_id;
+        const orderlines = await orderlineService.getOrderlinesByOrderId(id);
         const response = {
             "message": "session ok",
-            "data": orders
+            "data": orderlines
         }
         return res.status(statusCode["OK"]).json(response);
     } catch (error) {
-        console.log("Error controller getOrders : ", error);
+        console.log("Error controller getOrdersline : ", error);
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
-};
+}
 
-exports.getOrdersByCreateUid = async (req, res) => {
+exports.updateOrderline = async (req, res) => {
     try {
-        const id = req.body.create_uid;
-        const orders = await orderService.getOrdersByCreateUid(id);
-        const response = {
-            "message": "session ok",
-            "data": orders
-        }
-        return res.status(statusCode["OK"]).json(response);
-    } catch (error) {
-        console.log("Error controller getOrdersByCreateUid : ", error);
-        return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
-    }
-};
-
-exports.updateOrder = async (req, res) => {
-    try {
-        const order = await orderService.getOrdersByCreateUid(req.body);
+        const order = await orderlineService.updateOrderline(req.body);
         const response = {
             "message": "session ok",
             "data": order
@@ -55,14 +40,14 @@ exports.updateOrder = async (req, res) => {
         return res.status(statusCode["OK"]).json(response);
         
     } catch (error) {
-        console.log("Error controller updateOrder : ", error);
+        console.log("Error controller updateOrderline : ", error);
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
-};
+}
 
-exports.deleteOrder = async (req, res) => {
+exports.deleteOrderline = async (req, res) => {
     try {
-        const id_deleted = await orderService.deleteOrder(req.body.order_id);
+        const id_deleted = await orderlineService.deleteOrderline(req.body.orderline_id);
         const response = {
             "message": "session ok",
             "data": id_deleted
@@ -73,4 +58,4 @@ exports.deleteOrder = async (req, res) => {
         console.log("Error controller deleteOrder : ", error);
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
-};
+}

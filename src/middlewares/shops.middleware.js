@@ -4,7 +4,7 @@ const statusCode = require("../constants/status-code.constants");
 module.exports.listShopByUserIdValidate = async (req, res, next) => {
     try {
         const id = { 
-            user_id: req.params.user_id
+            user_id: req.body.user_id
         };
 
         await userIdSchema.validateAsync(id);

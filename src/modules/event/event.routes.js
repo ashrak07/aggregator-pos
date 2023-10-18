@@ -4,8 +4,8 @@ const ticketControllers = require("../ticket/ticket.controllers");
 const usersMiddleware = require("../../middlewares/users.middleware");
 const ticketsMiddleware = require("../../middlewares/tickets.middleware");
 
-router.get(
-    "/tickets/:id/:page?",
+router.post(
+    "/tickets/:page?",
     ticketsMiddleware.listTicketTypesValidate,
     usersMiddleware.checkSessionValidate,
     ticketControllers.getTicketTypes

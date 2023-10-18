@@ -3,7 +3,8 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.getShopByUserId = async (req, res) => {
     try {
-        const user_id = req.params.user_id;
+        const user_id = req.body.user_id;
+        console.log("user_id : ", user_id);
         const nb = req.params.nb;
         const page = req.params.page;
 

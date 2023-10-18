@@ -3,7 +3,7 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.getTicketTypes = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.body.event_id;
         const page = req.params.page;
 
         const ListTickets = await ticketService.getTicketTypes(id,page);
