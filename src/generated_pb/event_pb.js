@@ -2814,8 +2814,9 @@ proto.event.GetTicketTypeRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.event.GetTicketTypeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    page: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    fieldName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    fieldValue: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    page: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -2853,10 +2854,14 @@ proto.event.GetTicketTypeRequest.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFieldName(value);
       break;
     case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setFieldValue(value);
+      break;
+    case 3:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPage(value);
       break;
@@ -2889,46 +2894,53 @@ proto.event.GetTicketTypeRequest.prototype.serializeBinary = function() {
  */
 proto.event.GetTicketTypeRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getFieldName();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
-  f = message.getPage();
+  f = message.getFieldValue();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
+  f = message.getPage();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
 };
 
 
 /**
- * optional int32 id = 1;
- * @return {number}
+ * optional string field_name = 1;
+ * @return {string}
  */
-proto.event.GetTicketTypeRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.event.GetTicketTypeRequest.prototype.getFieldName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.event.GetTicketTypeRequest} returns this
  */
-proto.event.GetTicketTypeRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.event.GetTicketTypeRequest.prototype.setFieldName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int32 page = 2;
+ * optional int32 field_value = 2;
  * @return {number}
  */
-proto.event.GetTicketTypeRequest.prototype.getPage = function() {
+proto.event.GetTicketTypeRequest.prototype.getFieldValue = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -2937,8 +2949,26 @@ proto.event.GetTicketTypeRequest.prototype.getPage = function() {
  * @param {number} value
  * @return {!proto.event.GetTicketTypeRequest} returns this
  */
-proto.event.GetTicketTypeRequest.prototype.setPage = function(value) {
+proto.event.GetTicketTypeRequest.prototype.setFieldValue = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int32 page = 3;
+ * @return {number}
+ */
+proto.event.GetTicketTypeRequest.prototype.getPage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.event.GetTicketTypeRequest} returns this
+ */
+proto.event.GetTicketTypeRequest.prototype.setPage = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

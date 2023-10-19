@@ -4,6 +4,17 @@
 var grpc = require('@grpc/grpc-js');
 var ticket_pb = require('./ticket_pb.js');
 
+function serialize_ticket_CreateOrderTicketResponse(arg) {
+  if (!(arg instanceof ticket_pb.CreateOrderTicketResponse)) {
+    throw new Error('Expected argument of type ticket.CreateOrderTicketResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ticket_CreateOrderTicketResponse(buffer_arg) {
+  return ticket_pb.CreateOrderTicketResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ticket_CreateTicketRequest(arg) {
   if (!(arg instanceof ticket_pb.CreateTicketRequest)) {
     throw new Error('Expected argument of type ticket.CreateTicketRequest');
@@ -176,11 +187,11 @@ var TicketService = exports.TicketService = {
     requestStream: false,
     responseStream: false,
     requestType: ticket_pb.Order,
-    responseType: ticket_pb.TicketResponse,
+    responseType: ticket_pb.CreateOrderTicketResponse,
     requestSerialize: serialize_ticket_Order,
     requestDeserialize: deserialize_ticket_Order,
-    responseSerialize: serialize_ticket_TicketResponse,
-    responseDeserialize: deserialize_ticket_TicketResponse,
+    responseSerialize: serialize_ticket_CreateOrderTicketResponse,
+    responseDeserialize: deserialize_ticket_CreateOrderTicketResponse,
   },
 };
 

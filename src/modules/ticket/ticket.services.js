@@ -2,13 +2,15 @@ const clientGrpc = require("../../grpc-clients/client.grpc");
 
 const {GetTicketTypeRequest} = require("../../generated_pb/event_pb");
 
-exports.getTicketTypes = async (ticket_req,page) => {
+exports.getTicketTypes = async (name,value,page) => {
     console.log("invoking getTicketTypes");
-    console.log("Id: ", ticket_req);
+    console.log("name: ", name);
+    console.log("Id: ", value);
     console.log("page: ", page);
     
     const req =  new GetTicketTypeRequest()
-        .setId(ticket_req)
+        .setFieldName(name)
+        .setFieldValue(value)
         .setPage(page);
     console.log("req: ", req);
 

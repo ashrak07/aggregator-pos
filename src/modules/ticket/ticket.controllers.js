@@ -3,10 +3,11 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.getTicketTypes = async (req, res) => {
     try {
-        const id = req.body.event_id;
+        const name = req.body.field_name;
+        const value = req.body.field_value;
         const page = req.params.page;
 
-        const ListTickets = await ticketService.getTicketTypes(id,page);
+        const ListTickets = await ticketService.getTicketTypes(name,value,page);
 
         const response = {
             "message": "session ok",
