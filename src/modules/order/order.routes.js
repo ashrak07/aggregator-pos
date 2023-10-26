@@ -36,4 +36,11 @@ router.delete(
     orderControllers.deleteOrder
 )
 
+router.post(
+    "/checkDiscount",
+    orderMiddleware.checkDiscountValidate,
+    usersMiddleware.checkSessionValidate,
+    orderControllers.checkDiscount
+)
+
 module.exports = router;

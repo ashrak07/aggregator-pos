@@ -46,7 +46,7 @@ goog.exportSymbol('proto.event.TicketTypeResponse', null, global);
  * @constructor
  */
 proto.event.GetEventRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.event.GetEventRequest.repeatedFields_, null);
 };
 goog.inherits(proto.event.GetEventRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -330,6 +330,13 @@ if (goog.DEBUG && !COMPILED) {
   proto.event.GetEventPlaceResponse.displayName = 'proto.event.GetEventPlaceResponse';
 }
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.event.GetEventRequest.repeatedFields_ = [3,4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -362,7 +369,9 @@ proto.event.GetEventRequest.prototype.toObject = function(opt_includeInstance) {
 proto.event.GetEventRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    page: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    page: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    fieldNameList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    fieldValueList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -407,6 +416,14 @@ proto.event.GetEventRequest.deserializeBinaryFromReader = function(msg, reader) 
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPage(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldName(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldValue(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -450,6 +467,20 @@ proto.event.GetEventRequest.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
+  f = message.getFieldNameList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+  f = message.getFieldValueList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -486,6 +517,80 @@ proto.event.GetEventRequest.prototype.getPage = function() {
  */
 proto.event.GetEventRequest.prototype.setPage = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * repeated string field_name = 3;
+ * @return {!Array<string>}
+ */
+proto.event.GetEventRequest.prototype.getFieldNameList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.event.GetEventRequest} returns this
+ */
+proto.event.GetEventRequest.prototype.setFieldNameList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.event.GetEventRequest} returns this
+ */
+proto.event.GetEventRequest.prototype.addFieldName = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.event.GetEventRequest} returns this
+ */
+proto.event.GetEventRequest.prototype.clearFieldNameList = function() {
+  return this.setFieldNameList([]);
+};
+
+
+/**
+ * repeated string field_value = 4;
+ * @return {!Array<string>}
+ */
+proto.event.GetEventRequest.prototype.getFieldValueList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.event.GetEventRequest} returns this
+ */
+proto.event.GetEventRequest.prototype.setFieldValueList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.event.GetEventRequest} returns this
+ */
+proto.event.GetEventRequest.prototype.addFieldValue = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.event.GetEventRequest} returns this
+ */
+proto.event.GetEventRequest.prototype.clearFieldValueList = function() {
+  return this.setFieldValueList([]);
 };
 
 

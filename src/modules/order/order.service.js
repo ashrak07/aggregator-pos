@@ -3,6 +3,7 @@ const {CreateRequest} = require("../../generated_pb/order_pb");
 const {OrderQuery} = require("../../generated_pb/order_pb");
 const {UpdateRequest} = require("../../generated_pb/order_pb");
 const {DeleteRequest} = require("../../generated_pb/order_pb");
+const {CheckQuery} = require("../../generated_pb/order_pb");
 
 exports.createOrder = async (order_req) => {
     console.log("invoking createOrder");
@@ -174,6 +175,32 @@ exports.deleteOrder = async (id) => {
             }
             else{
                 console.log("Error deleteOrder: ", err);
+                reject(err);
+            }
+        });
+    });
+};
+
+exports.checkDiscount = async (check_req) => {
+    console.log("invoking checkDiscount");
+
+    const req = new CheckQuery().setName(check_req.name)
+    .setIdOrder(check_req.idorder);
+
+    console.log("returning promise");
+    return new Promise((resolve, reject) => {
+        const call = grpcClient.getOrderInstance().checkDiscount(req, (err, res) => {
+            if (!err) {
+                const check_res = {
+                    status: res.getStatus(),
+                    idPromocode: res.getIdPromocode(),
+                    alertMessage: res.getAlertMessage(),
+                };
+
+                resolve(check_res);
+            }
+            else{
+                console.log("Error checkDiscount: ", err);
                 reject(err);
             }
         });

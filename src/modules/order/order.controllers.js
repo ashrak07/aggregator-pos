@@ -74,3 +74,18 @@ exports.deleteOrder = async (req, res) => {
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
 };
+
+exports.checkDiscount = async (req, res) => {
+    try {
+        const check = await orderService.checkDiscount(req.body);
+        const response = {
+            "message": "session ok",
+            "data": check
+        }
+        return res.status(statusCode["OK"]).json(response);
+        
+    } catch (error) {
+        console.log("Error controller checkDiscount : ", error);
+        return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
+    }
+}

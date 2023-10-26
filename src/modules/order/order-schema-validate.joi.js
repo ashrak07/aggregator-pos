@@ -11,4 +11,10 @@ const deleteOrderSchema = Joi.object({
 
 });
 
-module.exports = { orderCreateUidSchema,deleteOrderSchema };
+const checkDiscountSchema = Joi.object({
+    name : Joi.string().required(),
+    idorder : Joi.number().required(),
+   
+});
+
+module.exports = { orderCreateUidSchema,deleteOrderSchema,checkDiscountSchema };
