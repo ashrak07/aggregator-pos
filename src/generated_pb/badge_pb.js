@@ -187,8 +187,8 @@ proto.badge.CreateBadgeRequest.prototype.toObject = function(opt_includeInstance
 proto.badge.CreateBadgeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    partnerId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    partnerName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    firstname: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    lastname: jspb.Message.getFieldWithDefault(msg, 3, ""),
     eventId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     eventName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     createUid: jspb.Message.getFieldWithDefault(msg, 6, 0),
@@ -203,9 +203,11 @@ proto.badge.CreateBadgeRequest.toObject = function(includeInstance, msg) {
     zone6: jspb.Message.getBooleanFieldWithDefault(msg, 15, false),
     licencePlate: jspb.Message.getFieldWithDefault(msg, 16, ""),
     email: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    jobTitle: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    jobTitleId: jspb.Message.getFieldWithDefault(msg, 18, 0),
     color: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    plannerId: jspb.Message.getFieldWithDefault(msg, 20, 0)
+    plannerId: jspb.Message.getFieldWithDefault(msg, 20, 0),
+    phone: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    job: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -247,12 +249,12 @@ proto.badge.CreateBadgeRequest.deserializeBinaryFromReader = function(msg, reade
       msg.setType(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPartnerId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstname(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPartnerName(value);
+      msg.setLastname(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
@@ -311,8 +313,8 @@ proto.badge.CreateBadgeRequest.deserializeBinaryFromReader = function(msg, reade
       msg.setEmail(value);
       break;
     case 18:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setJobTitle(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setJobTitleId(value);
       break;
     case 19:
       var value = /** @type {string} */ (reader.readString());
@@ -321,6 +323,14 @@ proto.badge.CreateBadgeRequest.deserializeBinaryFromReader = function(msg, reade
     case 20:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPlannerId(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhone(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setJob(value);
       break;
     default:
       reader.skipField();
@@ -358,14 +368,14 @@ proto.badge.CreateBadgeRequest.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getPartnerId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getFirstname();
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
   }
-  f = message.getPartnerName();
+  f = message.getLastname();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -470,9 +480,9 @@ proto.badge.CreateBadgeRequest.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getJobTitle();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getJobTitleId();
+  if (f !== 0) {
+    writer.writeInt32(
       18,
       f
     );
@@ -488,6 +498,20 @@ proto.badge.CreateBadgeRequest.serializeBinaryToWriter = function(message, write
   if (f !== 0) {
     writer.writeInt32(
       20,
+      f
+    );
+  }
+  f = message.getPhone();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getJob();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
       f
     );
   }
@@ -513,28 +537,28 @@ proto.badge.CreateBadgeRequest.prototype.setType = function(value) {
 
 
 /**
- * optional int32 partner_id = 2;
- * @return {number}
- */
-proto.badge.CreateBadgeRequest.prototype.getPartnerId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.badge.CreateBadgeRequest} returns this
- */
-proto.badge.CreateBadgeRequest.prototype.setPartnerId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional string partner_name = 3;
+ * optional string firstname = 2;
  * @return {string}
  */
-proto.badge.CreateBadgeRequest.prototype.getPartnerName = function() {
+proto.badge.CreateBadgeRequest.prototype.getFirstname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.badge.CreateBadgeRequest} returns this
+ */
+proto.badge.CreateBadgeRequest.prototype.setFirstname = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string lastname = 3;
+ * @return {string}
+ */
+proto.badge.CreateBadgeRequest.prototype.getLastname = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -543,7 +567,7 @@ proto.badge.CreateBadgeRequest.prototype.getPartnerName = function() {
  * @param {string} value
  * @return {!proto.badge.CreateBadgeRequest} returns this
  */
-proto.badge.CreateBadgeRequest.prototype.setPartnerName = function(value) {
+proto.badge.CreateBadgeRequest.prototype.setLastname = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -801,20 +825,20 @@ proto.badge.CreateBadgeRequest.prototype.setEmail = function(value) {
 
 
 /**
- * optional string job_title = 18;
- * @return {string}
+ * optional int32 job_title_id = 18;
+ * @return {number}
  */
-proto.badge.CreateBadgeRequest.prototype.getJobTitle = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+proto.badge.CreateBadgeRequest.prototype.getJobTitleId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.badge.CreateBadgeRequest} returns this
  */
-proto.badge.CreateBadgeRequest.prototype.setJobTitle = function(value) {
-  return jspb.Message.setProto3StringField(this, 18, value);
+proto.badge.CreateBadgeRequest.prototype.setJobTitleId = function(value) {
+  return jspb.Message.setProto3IntField(this, 18, value);
 };
 
 
@@ -854,6 +878,42 @@ proto.badge.CreateBadgeRequest.prototype.setPlannerId = function(value) {
 };
 
 
+/**
+ * optional string phone = 21;
+ * @return {string}
+ */
+proto.badge.CreateBadgeRequest.prototype.getPhone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.badge.CreateBadgeRequest} returns this
+ */
+proto.badge.CreateBadgeRequest.prototype.setPhone = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string job = 22;
+ * @return {string}
+ */
+proto.badge.CreateBadgeRequest.prototype.getJob = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.badge.CreateBadgeRequest} returns this
+ */
+proto.badge.CreateBadgeRequest.prototype.setJob = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
 
 
 
@@ -886,7 +946,8 @@ proto.badge.CreateBadgeResponse.prototype.toObject = function(opt_includeInstanc
  */
 proto.badge.CreateBadgeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    message: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -924,8 +985,12 @@ proto.badge.CreateBadgeResponse.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSuccess(value);
+      break;
+    case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setMessage(value);
       break;
     default:
       reader.skipField();
@@ -956,10 +1021,17 @@ proto.badge.CreateBadgeResponse.prototype.serializeBinary = function() {
  */
 proto.badge.CreateBadgeResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getSuccess();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getMessage();
   if (f.length > 0) {
     writer.writeString(
-      1,
+      2,
       f
     );
   }
@@ -967,11 +1039,29 @@ proto.badge.CreateBadgeResponse.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional string id = 1;
+ * optional bool success = 1;
+ * @return {boolean}
+ */
+proto.badge.CreateBadgeResponse.prototype.getSuccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.badge.CreateBadgeResponse} returns this
+ */
+proto.badge.CreateBadgeResponse.prototype.setSuccess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional string message = 2;
  * @return {string}
  */
-proto.badge.CreateBadgeResponse.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.badge.CreateBadgeResponse.prototype.getMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -979,8 +1069,8 @@ proto.badge.CreateBadgeResponse.prototype.getId = function() {
  * @param {string} value
  * @return {!proto.badge.CreateBadgeResponse} returns this
  */
-proto.badge.CreateBadgeResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.badge.CreateBadgeResponse.prototype.setMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

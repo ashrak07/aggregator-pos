@@ -6,7 +6,7 @@ const {DeleteRequest} = require("../../generated_pb/orderline_pb");
 
 exports.createOrderline = async (order_req) => {
     console.log("invoking createOrderline");
-    console.log("order_req: ", order_req);
+    console.log("orderline_req: ", order_req);
     
     const req =  new CreateRequest()
         .setPlace(order_req.place)
@@ -38,7 +38,7 @@ exports.createOrderline = async (order_req) => {
                     orderId: res.getOrderId(),
                     eventId: res.getEventId(),
                     isAdmission: res.getIsAdmission(),
-                    createDate: res.getCreateDate(),
+                    create_date: res.getCreateDate(),
                     writeDate: res.getWriteDate(),
                     createUid: res.getCreateUid(),
                     writeUid: res.getWriteUid(),
@@ -76,18 +76,18 @@ exports.getOrderlinesByOrderId = async (id) => {
                     id: order.getId(),
                     place: order.getPlace(),
                     section: order.getSection(),
-                    orderId: order.getOrderId(),
-                    eventId: order.getEventId(),
-                    isAdmission: order.getIsAdmission(),
-                    createDate: order.getCreateDate(),
-                    writeDate: order.getWriteDate(),
-                    createUid: order.getCreateUid(),
-                    writeUid: order.getWriteUid(),
-                    ticketTypeId: order.getTicketTypeId(),
+                    order_id: order.getOrderId(),
+                    event_id: order.getEventId(),
+                    is_admission: order.getIsAdmission(),
+                    create_date: order.getCreateDate(),
+                    write_date: order.getWriteDate(),
+                    create_uid: order.getCreateUid(),
+                    write_uid: order.getWriteUid(),
+                    ticket_type_id: order.getTicketTypeId(),
                     qty: order.getQty(),
-                    priceUnit: order.getPriceUnit(),
-                    priceReduce: order.getPriceReduce(),
-                    priceSubTotal: order.getPriceSubTotal(),
+                    price_unit: order.getPriceUnit(),
+                    price_reduce: order.getPriceReduce(),
+                    price_sub_total: order.getPriceSubTotal(),
                     discount: order.getDiscount(),
                 }));
 
@@ -135,8 +135,8 @@ exports.updateOrderline = async (order_req) => {
                     orderId: res.getOrderId(),
                     eventId: res.getEventId(),
                     isAdmission: res.getIsAdmission(),
-                    createDate: res.getCreateDate(),
-                    writeDate: res.getWriteDate(),
+                    create_date: res.getCreateDate(),
+                    write_date: res.getWriteDate(),
                     createUid: res.getCreateUid(),
                     writeUid: res.getWriteUid(),
                     ticketTypeId: res.getTicketTypeId(),
