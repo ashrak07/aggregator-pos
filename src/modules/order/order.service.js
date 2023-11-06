@@ -11,14 +11,18 @@ exports.createOrder = async (order_req) => {
     
     const req =  new CreateRequest()
         .setName(order_req.name)
-        .setPartnerId(order_req.partnerId)
+        .setPartnerId(order_req.partner_id)
         .setState(order_req.state)
-        .setDateOrder(order_req.dateOrder)
-        .setCreateDate(order_req.createDate)
-        .setCreateUid(order_req.createUid)
-        .setWriteDate(order_req.writeDate )
-        .setAmountTotal(order_req.amountTotal)
+        .setDateOrder(order_req.date_order)
+        //.setCreateDate(order_req.create_date)
+        .setCreateUid(order_req.create_uid)
+        //.setWriteDate(order_req.write_date )
+        .setAmountTotal(order_req.amount_total)
         .setNote(order_req.note)
+        .setSource(order_req.source)
+        .setBuyerName(order_req.buyer_name)
+        .setBuyerEmail(order_req.buyer_email)
+        .setBuyerPhone(order_req.buyer_phone)
         ;
     console.log("req: ", req);
 
@@ -37,6 +41,11 @@ exports.createOrder = async (order_req) => {
                     writeDate: res.getWriteDate(),
                     amountTotal: res.getAmountTotal(),
                     note: res.getNote(),
+                    source: res.getSource(),
+                    buyerName: res.getBuyerName(),
+                    buyerEmail: res.getBuyerEmail(),
+                    buyerPhone: res.getBuyerPhone(),
+
                 };
                 resolve(order_res);
             }
@@ -64,14 +73,18 @@ exports.getOrders = async (id) => {
                 const orders = res.getOrderList().map((order) => ({
                     id: order.getId(),
                     name: order.getName(),
-                    partnerId: order.getPartnerId(),
+                    partner_id: order.getPartnerId(),
                     state: order.getState(),
-                    dateOrder: order.getDateOrder(),
-                    createDate: order.getCreateDate(),
-                    createUid: order.getCreateUid(),
-                    writeDate: order.getWriteDate(),
-                    amountTotal: order.getAmountTotal(),
+                    date_order: order.getDateOrder(),
+                    create_date: order.getCreateDate(),
+                    create_did: order.getCreateUid(),
+                    write_date: order.getWriteDate(),
+                    amount_total: order.getAmountTotal(),
                     note: order.getNote(),
+                    source: order.getSource(),
+                    buyer_name: order.getBuyerName(),
+                    buyer_email: order.getBuyerEmail(),
+                    buyer_phone: order.getBuyerPhone(),
                 }));
 
                 resolve(orders);
@@ -98,14 +111,18 @@ exports.getOrdersByCreateUid = async (id) => {
                 const orders = res.getOrderList().map((order) => ({
                     id: order.getId(),
                     name: order.getName(),
-                    partnerId: order.getPartnerId(),
+                    partner_id: order.getPartnerId(),
                     state: order.getState(),
-                    dateOrder: order.getDateOrder(),
-                    createDate: order.getCreateDate(),
-                    createUid: order.getCreateUid(),
-                    writeDate: order.getWriteDate(),
-                    amountTotal: order.getAmountTotal(),
+                    date_order: order.getDateOrder(),
+                    create_date: order.getCreateDate(),
+                    create_uid: order.getCreateUid(),
+                    write_date: order.getWriteDate(),
+                    amount_total: order.getAmountTotal(),
                     note: order.getNote(),
+                    source: order.getSource(),
+                    buyer_name: order.getBuyerName(),
+                    buyer_email: order.getBuyerEmail(),
+                    buyer_phone: order.getBuyerPhone(),
                 }));
 
                 resolve(orders);
@@ -125,13 +142,13 @@ exports.updateOrder = async (order_req) => {
     const req = new UpdateRequest()
     .setId(order_req.id)
     .setName(order_req.name)
-    .setPartnerId(order_req.partnerId)
+    .setPartnerId(order_req.partner_id)
     .setState(order_req.state)
-    .setDateOrder(order_req.dateOrder)
-    .setCreateDate(order_req.createDate)
-    .setCreateUid(order_req.createUid)
-    .setWriteDate(order_req.writeDate)
-    .setAmountTotal(order_req.amountTotal)
+    .setDateOrder(order_req.date_order)
+    //.setCreateDate(order_req.create_date)
+    .setCreateUid(order_req.create_uid)
+    //.setWriteDate(order_req.write_date)
+    .setAmountTotal(order_req.amount_total)
     .setNote(order_req.note);
 
     return new Promise((resolve, reject) => {
@@ -140,13 +157,13 @@ exports.updateOrder = async (order_req) => {
                 const order_res = {
                     id: res.getId(),
                     name: res.getName(),
-                    partnerId: res.getPartnerId(),
+                    partner_id: res.getPartnerId(),
                     state: res.getState(),
-                    dateOrder: res.getDateOrder(),
-                    createDate: res.getCreateDate(),
-                    createUid: res.getCreateUid(),
-                    writeDate: res.getWriteDate(),
-                    amountTotal: res.getAmountTotal(),
+                    date_order: res.getDateOrder(),
+                    create_date: res.getCreateDate(),
+                    create_uid: res.getCreateUid(),
+                    write_date: res.getWriteDate(),
+                    amount_total: res.getAmountTotal(),
                     note: res.getNote(),
                 };
                 resolve(order_res);
@@ -185,7 +202,7 @@ exports.checkDiscount = async (check_req) => {
     console.log("invoking checkDiscount");
 
     const req = new CheckQuery().setName(check_req.name)
-    .setIdOrder(check_req.idorder);
+    .setIdOrder(check_req.id_order);
 
     console.log("returning promise");
     return new Promise((resolve, reject) => {
@@ -193,8 +210,8 @@ exports.checkDiscount = async (check_req) => {
             if (!err) {
                 const check_res = {
                     status: res.getStatus(),
-                    idPromocode: res.getIdPromocode(),
-                    alertMessage: res.getAlertMessage(),
+                    id_promocode: res.getIdPromocode(),
+                    alert_message: res.getAlertMessage(),
                 };
 
                 resolve(check_res);

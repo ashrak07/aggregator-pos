@@ -2,8 +2,8 @@ const Joi = require("joi");
 
 
 const eventIdSchema = Joi.object({
-    field_name : Joi.string().required(),
-    field_value : Joi.number().required(),
+    fieldName : Joi.required(),
+    fieldValue : Joi.required(),
    
 });
 

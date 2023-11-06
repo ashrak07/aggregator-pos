@@ -5,16 +5,20 @@ exports.createOrderline = async (req, res) => {
     try {
 
         const orderlines = await orderlineService.getOrderlinesByOrderId(req.body.order_id);
+        console.log("orderlines: ", orderlines)
+
         for (let i = 0; i < orderlines.length; i++) {
             const element = orderlines[i];
             console.log(element.ticket_type_id,"!!!!!!!!!!!!!!!",req.body.ticket_type_id );
             if (element.ticket_type_id == req.body.ticket_type_id) {
                 console.log("executing addition: ", element.qty,"+", req.body.qty)
-                element.qty += + req.body.qty;
+                element.qty += req.body.qty;
+                console.log("new quantity==>", element.qty)
+
+                
                 const date = new Date().toISOString().split('.')[0].replace('T', ' ');
                 element.write_date = date;
-                console.log("element",element.create_date);
-                console.log("element22",element.write_date);
+                
 
                 const orderline = await orderlineService.updateOrderline(element);
                 console.log("orderline updated",orderline)

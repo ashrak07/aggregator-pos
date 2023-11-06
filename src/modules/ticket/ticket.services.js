@@ -9,9 +9,16 @@ exports.getTicketTypes = async (name,value,page) => {
     console.log("page: ", page);
     
     const req =  new GetTicketTypeRequest()
-        .setFieldName(name)
-        .setFieldValue(value)
         .setPage(page);
+    
+    for (let index = 0; index < name.length; index++) {
+        req.addFieldName(name[index]);
+    }
+
+    for (let index = 0; index < value.length; index++) {
+        req.addFieldValue(value[index]);
+        
+    }
     console.log("req: ", req);
 
     return new Promise((resolve, reject) => {

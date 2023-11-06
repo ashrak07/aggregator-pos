@@ -235,7 +235,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.event.GetTicketTypeRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.event.GetTicketTypeRequest.repeatedFields_, null);
 };
 goog.inherits(proto.event.GetTicketTypeRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -335,7 +335,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.event.GetEventRequest.repeatedFields_ = [3,4];
+proto.event.GetEventRequest.repeatedFields_ = [2,3];
 
 
 
@@ -368,10 +368,9 @@ proto.event.GetEventRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.event.GetEventRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    page: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    fieldNameList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    fieldValueList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    page: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    fieldNameList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    fieldValueList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -410,17 +409,13 @@ proto.event.GetEventRequest.deserializeBinaryFromReader = function(msg, reader) 
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readInt32());
       msg.setPage(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.addFieldName(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.addFieldValue(value);
       break;
@@ -453,31 +448,24 @@ proto.event.GetEventRequest.prototype.serializeBinary = function() {
  */
 proto.event.GetEventRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getPage();
   if (f !== 0) {
     writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getPage();
-  if (f !== 0) {
-    writer.writeInt32(
-      2,
-      f
-    );
-  }
   f = message.getFieldNameList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      3,
+      2,
       f
     );
   }
   f = message.getFieldValueList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      4,
+      3,
       f
     );
   }
@@ -485,10 +473,10 @@ proto.event.GetEventRequest.serializeBinaryToWriter = function(message, writer) 
 
 
 /**
- * optional int32 id = 1;
+ * optional int32 page = 1;
  * @return {number}
  */
-proto.event.GetEventRequest.prototype.getId = function() {
+proto.event.GetEventRequest.prototype.getPage = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -497,35 +485,17 @@ proto.event.GetEventRequest.prototype.getId = function() {
  * @param {number} value
  * @return {!proto.event.GetEventRequest} returns this
  */
-proto.event.GetEventRequest.prototype.setId = function(value) {
+proto.event.GetEventRequest.prototype.setPage = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional int32 page = 2;
- * @return {number}
- */
-proto.event.GetEventRequest.prototype.getPage = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.event.GetEventRequest} returns this
- */
-proto.event.GetEventRequest.prototype.setPage = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * repeated string field_name = 3;
+ * repeated string field_name = 2;
  * @return {!Array<string>}
  */
 proto.event.GetEventRequest.prototype.getFieldNameList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
@@ -534,7 +504,7 @@ proto.event.GetEventRequest.prototype.getFieldNameList = function() {
  * @return {!proto.event.GetEventRequest} returns this
  */
 proto.event.GetEventRequest.prototype.setFieldNameList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 2, value || []);
 };
 
 
@@ -544,7 +514,7 @@ proto.event.GetEventRequest.prototype.setFieldNameList = function(value) {
  * @return {!proto.event.GetEventRequest} returns this
  */
 proto.event.GetEventRequest.prototype.addFieldName = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
 
@@ -558,11 +528,11 @@ proto.event.GetEventRequest.prototype.clearFieldNameList = function() {
 
 
 /**
- * repeated string field_value = 4;
+ * repeated string field_value = 3;
  * @return {!Array<string>}
  */
 proto.event.GetEventRequest.prototype.getFieldValueList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
@@ -571,7 +541,7 @@ proto.event.GetEventRequest.prototype.getFieldValueList = function() {
  * @return {!proto.event.GetEventRequest} returns this
  */
 proto.event.GetEventRequest.prototype.setFieldValueList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
+  return jspb.Message.setField(this, 3, value || []);
 };
 
 
@@ -581,7 +551,7 @@ proto.event.GetEventRequest.prototype.setFieldValueList = function(value) {
  * @return {!proto.event.GetEventRequest} returns this
  */
 proto.event.GetEventRequest.prototype.addFieldValue = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
@@ -2888,6 +2858,13 @@ proto.event.DeleteEventResponse.prototype.setId = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.event.GetTicketTypeRequest.repeatedFields_ = [1,2];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2919,8 +2896,8 @@ proto.event.GetTicketTypeRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.event.GetTicketTypeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fieldName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldValue: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    fieldNameList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    fieldValueList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
     page: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
@@ -2960,11 +2937,11 @@ proto.event.GetTicketTypeRequest.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFieldName(value);
+      msg.addFieldName(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setFieldValue(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldValue(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
@@ -2999,16 +2976,16 @@ proto.event.GetTicketTypeRequest.prototype.serializeBinary = function() {
  */
 proto.event.GetTicketTypeRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getFieldName();
+  f = message.getFieldNameList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       1,
       f
     );
   }
-  f = message.getFieldValue();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getFieldValueList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
       2,
       f
     );
@@ -3024,38 +3001,76 @@ proto.event.GetTicketTypeRequest.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string field_name = 1;
- * @return {string}
+ * repeated string field_name = 1;
+ * @return {!Array<string>}
  */
-proto.event.GetTicketTypeRequest.prototype.getFieldName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.event.GetTicketTypeRequest.prototype.getFieldNameList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.event.GetTicketTypeRequest} returns this
+ */
+proto.event.GetTicketTypeRequest.prototype.setFieldNameList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.event.GetTicketTypeRequest} returns this
  */
-proto.event.GetTicketTypeRequest.prototype.setFieldName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.event.GetTicketTypeRequest.prototype.addFieldName = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
 /**
- * optional int32 field_value = 2;
- * @return {number}
+ * Clears the list making it empty but non-null.
+ * @return {!proto.event.GetTicketTypeRequest} returns this
  */
-proto.event.GetTicketTypeRequest.prototype.getFieldValue = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.event.GetTicketTypeRequest.prototype.clearFieldNameList = function() {
+  return this.setFieldNameList([]);
 };
 
 
 /**
- * @param {number} value
+ * repeated string field_value = 2;
+ * @return {!Array<string>}
+ */
+proto.event.GetTicketTypeRequest.prototype.getFieldValueList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
  * @return {!proto.event.GetTicketTypeRequest} returns this
  */
-proto.event.GetTicketTypeRequest.prototype.setFieldValue = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+proto.event.GetTicketTypeRequest.prototype.setFieldValueList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.event.GetTicketTypeRequest} returns this
+ */
+proto.event.GetTicketTypeRequest.prototype.addFieldValue = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.event.GetTicketTypeRequest} returns this
+ */
+proto.event.GetTicketTypeRequest.prototype.clearFieldValueList = function() {
+  return this.setFieldValueList([]);
 };
 
 
