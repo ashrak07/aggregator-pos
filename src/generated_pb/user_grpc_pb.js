@@ -4,6 +4,17 @@
 var grpc = require('@grpc/grpc-js');
 var user_pb = require('./user_pb.js');
 
+function serialize_user_CreatePlannerResponse(arg) {
+  if (!(arg instanceof user_pb.CreatePlannerResponse)) {
+    throw new Error('Expected argument of type user.CreatePlannerResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_CreatePlannerResponse(buffer_arg) {
+  return user_pb.CreatePlannerResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_user_Message(arg) {
   if (!(arg instanceof user_pb.Message)) {
     throw new Error('Expected argument of type user.Message');
@@ -24,6 +35,39 @@ function serialize_user_PasswordUpdate(arg) {
 
 function deserialize_user_PasswordUpdate(buffer_arg) {
   return user_pb.PasswordUpdate.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_PlannerInformations(arg) {
+  if (!(arg instanceof user_pb.PlannerInformations)) {
+    throw new Error('Expected argument of type user.PlannerInformations');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_PlannerInformations(buffer_arg) {
+  return user_pb.PlannerInformations.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_PlannerModels(arg) {
+  if (!(arg instanceof user_pb.PlannerModels)) {
+    throw new Error('Expected argument of type user.PlannerModels');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_PlannerModels(buffer_arg) {
+  return user_pb.PlannerModels.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_PlannerQuery(arg) {
+  if (!(arg instanceof user_pb.PlannerQuery)) {
+    throw new Error('Expected argument of type user.PlannerQuery');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_PlannerQuery(buffer_arg) {
+  return user_pb.PlannerQuery.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_user_User(arg) {
@@ -137,6 +181,28 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_user_UserLogin,
     responseSerialize: serialize_user_UserLoginResponse,
     responseDeserialize: deserialize_user_UserLoginResponse,
+  },
+  createPlanner: {
+    path: '/user.UserService/CreatePlanner',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.PlannerInformations,
+    responseType: user_pb.CreatePlannerResponse,
+    requestSerialize: serialize_user_PlannerInformations,
+    requestDeserialize: deserialize_user_PlannerInformations,
+    responseSerialize: serialize_user_CreatePlannerResponse,
+    responseDeserialize: deserialize_user_CreatePlannerResponse,
+  },
+  getPlanners: {
+    path: '/user.UserService/GetPlanners',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.PlannerQuery,
+    responseType: user_pb.PlannerModels,
+    requestSerialize: serialize_user_PlannerQuery,
+    requestDeserialize: deserialize_user_PlannerQuery,
+    responseSerialize: serialize_user_PlannerModels,
+    responseDeserialize: deserialize_user_PlannerModels,
   },
 };
 

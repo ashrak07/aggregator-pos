@@ -1386,16 +1386,14 @@ proto.orderline.CreateRequest.toObject = function(includeInstance, msg) {
     orderId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     eventId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     isAdmission: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    createDate: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    writeDate: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    discount: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    priceSubTotal: jspb.Message.getFieldWithDefault(msg, 7, 0),
     createUid: jspb.Message.getFieldWithDefault(msg, 8, 0),
     writeUid: jspb.Message.getFieldWithDefault(msg, 9, 0),
     ticketTypeId: jspb.Message.getFieldWithDefault(msg, 10, 0),
     qty: jspb.Message.getFieldWithDefault(msg, 11, 0),
     priceUnit: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    priceReduce: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    priceSubTotal: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    discount: jspb.Message.getFieldWithDefault(msg, 15, 0)
+    priceReduce: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -1453,12 +1451,12 @@ proto.orderline.CreateRequest.deserializeBinaryFromReader = function(msg, reader
       msg.setIsAdmission(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCreateDate(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setDiscount(value);
       break;
     case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setWriteDate(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPriceSubTotal(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readInt32());
@@ -1483,14 +1481,6 @@ proto.orderline.CreateRequest.deserializeBinaryFromReader = function(msg, reader
     case 13:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPriceReduce(value);
-      break;
-    case 14:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPriceSubTotal(value);
-      break;
-    case 15:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setDiscount(value);
       break;
     default:
       reader.skipField();
@@ -1556,16 +1546,16 @@ proto.orderline.CreateRequest.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getCreateDate();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getDiscount();
+  if (f !== 0) {
+    writer.writeInt32(
       6,
       f
     );
   }
-  f = message.getWriteDate();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getPriceSubTotal();
+  if (f !== 0) {
+    writer.writeInt32(
       7,
       f
     );
@@ -1609,20 +1599,6 @@ proto.orderline.CreateRequest.serializeBinaryToWriter = function(message, writer
   if (f !== 0) {
     writer.writeInt32(
       13,
-      f
-    );
-  }
-  f = message.getPriceSubTotal();
-  if (f !== 0) {
-    writer.writeInt32(
-      14,
-      f
-    );
-  }
-  f = message.getDiscount();
-  if (f !== 0) {
-    writer.writeInt32(
-      15,
       f
     );
   }
@@ -1720,38 +1696,38 @@ proto.orderline.CreateRequest.prototype.setIsAdmission = function(value) {
 
 
 /**
- * optional string create_date = 6;
- * @return {string}
+ * optional int32 discount = 6;
+ * @return {number}
  */
-proto.orderline.CreateRequest.prototype.getCreateDate = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+proto.orderline.CreateRequest.prototype.getDiscount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.orderline.CreateRequest} returns this
  */
-proto.orderline.CreateRequest.prototype.setCreateDate = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+proto.orderline.CreateRequest.prototype.setDiscount = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string write_date = 7;
- * @return {string}
+ * optional int32 price_sub_total = 7;
+ * @return {number}
  */
-proto.orderline.CreateRequest.prototype.getWriteDate = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+proto.orderline.CreateRequest.prototype.getPriceSubTotal = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.orderline.CreateRequest} returns this
  */
-proto.orderline.CreateRequest.prototype.setWriteDate = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+proto.orderline.CreateRequest.prototype.setPriceSubTotal = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -1860,42 +1836,6 @@ proto.orderline.CreateRequest.prototype.getPriceReduce = function() {
  */
 proto.orderline.CreateRequest.prototype.setPriceReduce = function(value) {
   return jspb.Message.setProto3IntField(this, 13, value);
-};
-
-
-/**
- * optional int32 price_sub_total = 14;
- * @return {number}
- */
-proto.orderline.CreateRequest.prototype.getPriceSubTotal = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.orderline.CreateRequest} returns this
- */
-proto.orderline.CreateRequest.prototype.setPriceSubTotal = function(value) {
-  return jspb.Message.setProto3IntField(this, 14, value);
-};
-
-
-/**
- * optional int32 discount = 15;
- * @return {number}
- */
-proto.orderline.CreateRequest.prototype.getDiscount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.orderline.CreateRequest} returns this
- */
-proto.orderline.CreateRequest.prototype.setDiscount = function(value) {
-  return jspb.Message.setProto3IntField(this, 15, value);
 };
 
 
@@ -2516,17 +2456,15 @@ proto.orderline.UpdateRequest.toObject = function(includeInstance, msg) {
     orderId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     eventId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     isAdmission: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    createDate: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    writeDate: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    discount: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    section: jspb.Message.getFieldWithDefault(msg, 7, ""),
     createUid: jspb.Message.getFieldWithDefault(msg, 8, 0),
     writeUid: jspb.Message.getFieldWithDefault(msg, 9, 0),
     ticketTypeId: jspb.Message.getFieldWithDefault(msg, 10, 0),
     qty: jspb.Message.getFieldWithDefault(msg, 11, 0),
     priceUnit: jspb.Message.getFieldWithDefault(msg, 12, 0),
     priceReduce: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    priceSubTotal: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    discount: jspb.Message.getFieldWithDefault(msg, 15, 0),
-    section: jspb.Message.getFieldWithDefault(msg, 16, "")
+    priceSubTotal: jspb.Message.getFieldWithDefault(msg, 14, 0)
   };
 
   if (includeInstance) {
@@ -2584,12 +2522,12 @@ proto.orderline.UpdateRequest.deserializeBinaryFromReader = function(msg, reader
       msg.setIsAdmission(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCreateDate(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setDiscount(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setWriteDate(value);
+      msg.setSection(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readInt32());
@@ -2618,14 +2556,6 @@ proto.orderline.UpdateRequest.deserializeBinaryFromReader = function(msg, reader
     case 14:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPriceSubTotal(value);
-      break;
-    case 15:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setDiscount(value);
-      break;
-    case 16:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setSection(value);
       break;
     default:
       reader.skipField();
@@ -2691,14 +2621,14 @@ proto.orderline.UpdateRequest.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getCreateDate();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getDiscount();
+  if (f !== 0) {
+    writer.writeInt32(
       6,
       f
     );
   }
-  f = message.getWriteDate();
+  f = message.getSection();
   if (f.length > 0) {
     writer.writeString(
       7,
@@ -2751,20 +2681,6 @@ proto.orderline.UpdateRequest.serializeBinaryToWriter = function(message, writer
   if (f !== 0) {
     writer.writeInt32(
       14,
-      f
-    );
-  }
-  f = message.getDiscount();
-  if (f !== 0) {
-    writer.writeInt32(
-      15,
-      f
-    );
-  }
-  f = message.getSection();
-  if (f.length > 0) {
-    writer.writeString(
-      16,
       f
     );
   }
@@ -2862,28 +2778,28 @@ proto.orderline.UpdateRequest.prototype.setIsAdmission = function(value) {
 
 
 /**
- * optional string create_date = 6;
- * @return {string}
+ * optional int32 discount = 6;
+ * @return {number}
  */
-proto.orderline.UpdateRequest.prototype.getCreateDate = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+proto.orderline.UpdateRequest.prototype.getDiscount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.orderline.UpdateRequest} returns this
  */
-proto.orderline.UpdateRequest.prototype.setCreateDate = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+proto.orderline.UpdateRequest.prototype.setDiscount = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string write_date = 7;
+ * optional string section = 7;
  * @return {string}
  */
-proto.orderline.UpdateRequest.prototype.getWriteDate = function() {
+proto.orderline.UpdateRequest.prototype.getSection = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -2892,7 +2808,7 @@ proto.orderline.UpdateRequest.prototype.getWriteDate = function() {
  * @param {string} value
  * @return {!proto.orderline.UpdateRequest} returns this
  */
-proto.orderline.UpdateRequest.prototype.setWriteDate = function(value) {
+proto.orderline.UpdateRequest.prototype.setSection = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -3020,42 +2936,6 @@ proto.orderline.UpdateRequest.prototype.getPriceSubTotal = function() {
  */
 proto.orderline.UpdateRequest.prototype.setPriceSubTotal = function(value) {
   return jspb.Message.setProto3IntField(this, 14, value);
-};
-
-
-/**
- * optional int32 discount = 15;
- * @return {number}
- */
-proto.orderline.UpdateRequest.prototype.getDiscount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.orderline.UpdateRequest} returns this
- */
-proto.orderline.UpdateRequest.prototype.setDiscount = function(value) {
-  return jspb.Message.setProto3IntField(this, 15, value);
-};
-
-
-/**
- * optional string section = 16;
- * @return {string}
- */
-proto.orderline.UpdateRequest.prototype.getSection = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.orderline.UpdateRequest} returns this
- */
-proto.orderline.UpdateRequest.prototype.setSection = function(value) {
-  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 

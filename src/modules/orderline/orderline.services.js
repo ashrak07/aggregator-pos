@@ -116,7 +116,7 @@ exports.updateOrderline = async (order_req) => {
     .setOrderId(order_req.order_id)
     .setEventId(order_req.event_id)
     .setIsAdmission(order_req.is_admission)
-    .setCreateDate(order_req.create_date)
+    //.setCreateDate(order_req.create_date)
     //.setWriteDate(order_req.write_date)
     .setCreateUid(order_req.create_uid)
     .setWriteUid(order_req.write_uid)
