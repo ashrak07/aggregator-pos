@@ -98,11 +98,13 @@ exports.getOrders = async (id) => {
 
 };
 
-exports.getOrdersByCreateUid = async (id) => {
+exports.getOrdersByCreateUid = async (id,page,nb) => {
     console.log("invoking getOrder");
 
     const req = new OrderQuery()
-    .setId(id);
+    .setId(id)
+    .setPage(page)
+    .setItemsPerPage(nb);
 
     console.log("returning promise");
     return new Promise((resolve, reject) => {
@@ -149,7 +151,12 @@ exports.updateOrder = async (order_req) => {
     .setCreateUid(order_req.create_uid)
     //.setWriteDate(order_req.write_date)
     .setAmountTotal(order_req.amount_total)
-    .setNote(order_req.note);
+    .setNote(order_req.note)
+    .setBuyerEmail(order_req.buyer_email)
+    .setBuyerName(order_req.buyer_name)
+    .setBuyerPhone(order_req.buyer_phone)
+    .setSource(order_req.source);
+    
 
     return new Promise((resolve, reject) => {
         grpcClient.getOrderInstance().updateOrder(req, (err, res) => {

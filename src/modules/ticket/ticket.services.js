@@ -1,6 +1,8 @@
 const clientGrpc = require("../../grpc-clients/client.grpc");
 
 const {GetTicketTypeRequest} = require("../../generated_pb/event_pb");
+const {Order} = require("../../generated_pb/ticket_pb");
+const {TicketQuery} = require("../../generated_pb/ticket_pb");
 
 exports.getTicketTypes = async (name,value,page) => {
     console.log("invoking getTicketTypes");
@@ -64,4 +66,63 @@ exports.getTicketTypes = async (name,value,page) => {
     });
     
 
+};
+
+exports.createOrderTicket = async (order_id) => {
+    console.log("invoking createOrderTicket");
+    console.log("order id: ", order_id);
+
+    const req = new Order();
+    req.setOrderId(order_id);
+
+    return new Promise((resolve, reject) => {
+        clientGrpc.getTicketInstance().createOrderTicket(req, (err, res) => {
+            if (!err) {
+                console.log("res: ", res);
+                const result= {
+                    success: res.getSuccess(),
+                    message: res.getMessage(),
+                }
+                resolve(res);
+            }
+            else{
+                console.log("Error createOrderTicket: ", err);
+                reject(err);
+            }
+        });
+    });
+};
+
+
+exports.getTickets = async (req) => {
+    console.log("invoking getTickets");
+    console.log("req: ", req);
+
+    const reqticket = new TicketQuery();
+    reqticket.setFieldName(req.field_name);
+    reqticket.setFieldValue(req.field_value);
+
+    return new Promise((resolve, reject) => {
+        const call = clientGrpc.getTicketInstance().getTickets(reqticket, (err, res) => {
+            if (!err) {
+                const tickets = res.getTicketsList().map((ticket) => ({
+                    id: ticket.getTicketId(),
+                    event_id: ticket.getEventId(),
+                    ticket_type_id: ticket.getTicketTypeId(),
+                    ticket_type_name: ticket.getTicketTypeName(),
+                    order_id: ticket.getOrderId(),
+                    order_line_id: ticket.getOrderLineId(),
+                    section: ticket.getSection(),
+                    place: ticket.getPlace(),
+                    is_admission: ticket.getIsAdmission(),
+                    price: ticket.getPrice()
+                }));
+                resolve(tickets);
+            }
+            else{
+                console.log("Error getTickets: ", err);
+                reject(err);
+            }
+        });
+    });
 };

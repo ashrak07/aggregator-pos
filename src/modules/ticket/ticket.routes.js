@@ -3,9 +3,16 @@ const router = express.Router();
 const ticketControllers = require("./ticket.controllers");
 const usersMiddleware = require("../../middlewares/users.middleware");
 
-router.get(
-    "/",
+router.put(
+    "/create",
     usersMiddleware.checkSessionValidate,
+    ticketControllers.createOrderTicket,
+
+);
+router.post(
+    "/order_id",
+    usersMiddleware.checkSessionValidate,
+    ticketControllers.getTickets,
     
 );
 

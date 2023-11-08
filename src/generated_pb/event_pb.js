@@ -88,7 +88,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.event.GetEventCategoryRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.event.GetEventCategoryRequest.repeatedFields_, null);
 };
 goog.inherits(proto.event.GetEventCategoryRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1685,6 +1685,13 @@ proto.event.GetEventResponse.prototype.setSeatsIoEventChartKey = function(value)
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.event.GetEventCategoryRequest.repeatedFields_ = [2,3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1716,8 +1723,9 @@ proto.event.GetEventCategoryRequest.prototype.toObject = function(opt_includeIns
  */
 proto.event.GetEventCategoryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    page: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    page: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    fieldNameList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    fieldValueList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1756,11 +1764,15 @@ proto.event.GetEventCategoryRequest.deserializeBinaryFromReader = function(msg, 
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
+      msg.setPage(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPage(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldName(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldValue(value);
       break;
     default:
       reader.skipField();
@@ -1791,17 +1803,24 @@ proto.event.GetEventCategoryRequest.prototype.serializeBinary = function() {
  */
 proto.event.GetEventCategoryRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getPage();
   if (f !== 0) {
     writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getPage();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getFieldNameList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
       2,
+      f
+    );
+  }
+  f = message.getFieldValueList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
       f
     );
   }
@@ -1809,10 +1828,10 @@ proto.event.GetEventCategoryRequest.serializeBinaryToWriter = function(message, 
 
 
 /**
- * optional int32 id = 1;
+ * optional int32 page = 1;
  * @return {number}
  */
-proto.event.GetEventCategoryRequest.prototype.getId = function() {
+proto.event.GetEventCategoryRequest.prototype.getPage = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -1821,26 +1840,82 @@ proto.event.GetEventCategoryRequest.prototype.getId = function() {
  * @param {number} value
  * @return {!proto.event.GetEventCategoryRequest} returns this
  */
-proto.event.GetEventCategoryRequest.prototype.setId = function(value) {
+proto.event.GetEventCategoryRequest.prototype.setPage = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional int32 page = 2;
- * @return {number}
+ * repeated string field_name = 2;
+ * @return {!Array<string>}
  */
-proto.event.GetEventCategoryRequest.prototype.getPage = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.event.GetEventCategoryRequest.prototype.getFieldNameList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
 /**
- * @param {number} value
+ * @param {!Array<string>} value
  * @return {!proto.event.GetEventCategoryRequest} returns this
  */
-proto.event.GetEventCategoryRequest.prototype.setPage = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+proto.event.GetEventCategoryRequest.prototype.setFieldNameList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.event.GetEventCategoryRequest} returns this
+ */
+proto.event.GetEventCategoryRequest.prototype.addFieldName = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.event.GetEventCategoryRequest} returns this
+ */
+proto.event.GetEventCategoryRequest.prototype.clearFieldNameList = function() {
+  return this.setFieldNameList([]);
+};
+
+
+/**
+ * repeated string field_value = 3;
+ * @return {!Array<string>}
+ */
+proto.event.GetEventCategoryRequest.prototype.getFieldValueList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.event.GetEventCategoryRequest} returns this
+ */
+proto.event.GetEventCategoryRequest.prototype.setFieldValueList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.event.GetEventCategoryRequest} returns this
+ */
+proto.event.GetEventCategoryRequest.prototype.addFieldValue = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.event.GetEventCategoryRequest} returns this
+ */
+proto.event.GetEventCategoryRequest.prototype.clearFieldValueList = function() {
+  return this.setFieldValueList([]);
 };
 
 

@@ -33,7 +33,9 @@ exports.getOrders = async (req, res) => {
 exports.getOrdersByCreateUid = async (req, res) => {
     try {
         const id = req.body.create_uid;
-        const orders = await orderService.getOrdersByCreateUid(id);
+        const page = req.params.page;
+        const nb = req.params.nb;
+        const orders = await orderService.getOrdersByCreateUid(id,page,nb);
         const response = {
             "message": "session ok",
             "data": orders
@@ -47,7 +49,7 @@ exports.getOrdersByCreateUid = async (req, res) => {
 
 exports.updateOrder = async (req, res) => {
     try {
-        const order = await orderService.getOrdersByCreateUid(req.body);
+        const order = await orderService.updateOrder(req.body);
         const response = {
             "message": "session ok",
             "data": order

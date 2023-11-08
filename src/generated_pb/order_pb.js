@@ -1326,7 +1326,9 @@ proto.order.OrderQuery.prototype.toObject = function(opt_includeInstance) {
  */
 proto.order.OrderQuery.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    page: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    itemsPerPage: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1367,6 +1369,14 @@ proto.order.OrderQuery.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPage(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setItemsPerPage(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1403,6 +1413,20 @@ proto.order.OrderQuery.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getPage();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getItemsPerPage();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -1421,6 +1445,42 @@ proto.order.OrderQuery.prototype.getId = function() {
  */
 proto.order.OrderQuery.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional int32 page = 2;
+ * @return {number}
+ */
+proto.order.OrderQuery.prototype.getPage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.order.OrderQuery} returns this
+ */
+proto.order.OrderQuery.prototype.setPage = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int32 items_per_page = 3;
+ * @return {number}
+ */
+proto.order.OrderQuery.prototype.getItemsPerPage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.order.OrderQuery} returns this
+ */
+proto.order.OrderQuery.prototype.setItemsPerPage = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

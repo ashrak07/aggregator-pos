@@ -17,7 +17,7 @@ router.get(
   );
 
 router.post(
-    "/createUid",
+    "/createUid/:page?/:nb?",
     orderMiddleware.listOrdersValidate,
     usersMiddleware.checkSessionValidate,
     orderControllers.getOrdersByCreateUid

@@ -6,6 +6,7 @@ const {ShopServiceClient} = require("../generated_pb/shop_grpc_pb");
 const {EventClient} = require("../generated_pb/event_grpc_pb");
 const {OrderClient} = require("../generated_pb/order_grpc_pb");
 const {OrderlineClient} = require("../generated_pb/orderline_grpc_pb");
+const {TicketClient} = require("../generated_pb/ticket_grpc_pb");
 
 exports.getUserInstance = () => {
   if (this.userClient == null) {
@@ -41,4 +42,11 @@ exports.getOrderlineInstance = () => {
     this.orderlineClient = new OrderlineClient(`${process.env.MS_ORDER_IP}:${process.env.MS_ORDER_GRPC_PORT}`, grpc.credentials.createInsecure());
   }
   return this.orderlineClient;
+}
+
+exports.getTicketInstance = () => {
+  if (this.ticketClient == null) {
+    this.ticketClient = new TicketClient(`${process.env.MS_TICKET_IP}:${process.env.MS_TICKET_GRPC_PORT}`, grpc.credentials.createInsecure());
+  }
+  return this.ticketClient;
 }
