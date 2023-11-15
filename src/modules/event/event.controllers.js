@@ -19,3 +19,17 @@ exports.getEventByShopId = async (req, res) => {
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
 };
+
+exports.getEvents = async (req, res) => {
+    try {
+        const events = await eventService.getEvents(req.body);
+        const response = {
+            "message": "session ok",
+            "data": events
+        }
+        return res.status(statusCode["OK"]).json(response);
+    } catch (error) {
+        console.log("Error controller getEvents : ", error);
+        return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
+    }
+};

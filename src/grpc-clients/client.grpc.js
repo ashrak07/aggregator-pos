@@ -46,7 +46,7 @@ exports.getOrderlineInstance = () => {
 
 exports.getTicketInstance = () => {
   if (this.ticketClient == null) {
-    this.ticketClient = new TicketClient(`${process.env.MS_TICKET_IP}:${process.env.MS_TICKET_GRPC_PORT}`, grpc.credentials.createInsecure());
+    this.ticketClient = new TicketClient(`node_ms-ticket:${process.env.MS_TICKET_GRPC_PORT}`, grpc.credentials.createInsecure());
   }
   return this.ticketClient;
 }

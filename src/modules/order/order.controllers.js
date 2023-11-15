@@ -17,8 +17,9 @@ exports.createOrder = async (req, res) => {
 
 exports.getOrders = async (req, res) => {
     try {
-        const id = req.params.id;
-        const orders = await orderService.getOrders(id);
+        const id = req.body.id;
+        const page = req.params.page;
+        const orders = await orderService.getOrders(id,page);
         const response = {
             "message": "session ok",
             "data": orders
@@ -47,8 +48,32 @@ exports.getOrdersByCreateUid = async (req, res) => {
     }
 };
 
+exports.findOrder = async (req, res) => {
+    try {
+        console.log("findOrder body : ", req.body);
+        const id = req.body.id;
+        const buyer_name = req.body.buyer_name;
+        const page = req.params.page;
+        const field_name = req.body.field_name;
+        const value = req.body.value;
+        const dateFrom = req.body.dateFrom;
+        const dateTo = req.body.dateTo;
+        const orders = await orderService.findOrder(id,buyer_name,page,field_name,value,dateFrom,dateTo);
+        const response = {
+            "message": "session ok",
+            "data": orders
+        }
+        return res.status(statusCode["OK"]).json(response);
+    } catch (error) {
+        console.log("Error controller getOrdersByCreateUid : ", error);
+        return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
+    }
+};
+
+
 exports.updateOrder = async (req, res) => {
     try {
+        console.log("req.body : ", req.body);
         const order = await orderService.updateOrder(req.body);
         const response = {
             "message": "session ok",

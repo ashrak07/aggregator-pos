@@ -372,8 +372,9 @@ proto.order.FindRequest.toObject = function(includeInstance, msg) {
     page: jspb.Message.getFieldWithDefault(msg, 2, 0),
     fieldNameList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     fieldValueList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    datefrom: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    dateto: jspb.Message.getFieldWithDefault(msg, 6, "")
+    dateFrom: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    dateTo: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    buyerName: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -428,11 +429,15 @@ proto.order.FindRequest.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDatefrom(value);
+      msg.setDateFrom(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDateto(value);
+      msg.setDateTo(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuyerName(value);
       break;
     default:
       reader.skipField();
@@ -491,17 +496,24 @@ proto.order.FindRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getDatefrom();
+  f = message.getDateFrom();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getDateto();
+  f = message.getDateTo();
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getBuyerName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -619,10 +631,10 @@ proto.order.FindRequest.prototype.clearFieldValueList = function() {
 
 
 /**
- * optional string dateFrom = 5;
+ * optional string date_from = 5;
  * @return {string}
  */
-proto.order.FindRequest.prototype.getDatefrom = function() {
+proto.order.FindRequest.prototype.getDateFrom = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -631,16 +643,16 @@ proto.order.FindRequest.prototype.getDatefrom = function() {
  * @param {string} value
  * @return {!proto.order.FindRequest} returns this
  */
-proto.order.FindRequest.prototype.setDatefrom = function(value) {
+proto.order.FindRequest.prototype.setDateFrom = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string dateTo = 6;
+ * optional string date_to = 6;
  * @return {string}
  */
-proto.order.FindRequest.prototype.getDateto = function() {
+proto.order.FindRequest.prototype.getDateTo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -649,8 +661,26 @@ proto.order.FindRequest.prototype.getDateto = function() {
  * @param {string} value
  * @return {!proto.order.FindRequest} returns this
  */
-proto.order.FindRequest.prototype.setDateto = function(value) {
+proto.order.FindRequest.prototype.setDateTo = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string buyer_name = 7;
+ * @return {string}
+ */
+proto.order.FindRequest.prototype.getBuyerName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.order.FindRequest} returns this
+ */
+proto.order.FindRequest.prototype.setBuyerName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -1690,7 +1720,8 @@ proto.order.Orders.toObject = function(includeInstance, msg) {
     source: jspb.Message.getFieldWithDefault(msg, 12, ""),
     buyerName: jspb.Message.getFieldWithDefault(msg, 13, ""),
     buyerEmail: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    buyerPhone: jspb.Message.getFieldWithDefault(msg, 15, "")
+    buyerPhone: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    randomCodeOrder: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
 
   if (includeInstance) {
@@ -1786,6 +1817,10 @@ proto.order.Orders.deserializeBinaryFromReader = function(msg, reader) {
     case 15:
       var value = /** @type {string} */ (reader.readString());
       msg.setBuyerPhone(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRandomCodeOrder(value);
       break;
     default:
       reader.skipField();
@@ -1918,6 +1953,13 @@ proto.order.Orders.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       15,
+      f
+    );
+  }
+  f = message.getRandomCodeOrder();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
       f
     );
   }
@@ -2191,6 +2233,24 @@ proto.order.Orders.prototype.getBuyerPhone = function() {
  */
 proto.order.Orders.prototype.setBuyerPhone = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional string random_code_order = 16;
+ * @return {string}
+ */
+proto.order.Orders.prototype.getRandomCodeOrder = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.order.Orders} returns this
+ */
+proto.order.Orders.prototype.setRandomCodeOrder = function(value) {
+  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
@@ -2930,7 +2990,8 @@ proto.order.CreateResponse.toObject = function(includeInstance, msg) {
     source: jspb.Message.getFieldWithDefault(msg, 12, ""),
     buyerName: jspb.Message.getFieldWithDefault(msg, 13, ""),
     buyerEmail: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    buyerPhone: jspb.Message.getFieldWithDefault(msg, 15, "")
+    buyerPhone: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    randomCodeOrder: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
 
   if (includeInstance) {
@@ -3026,6 +3087,10 @@ proto.order.CreateResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 15:
       var value = /** @type {string} */ (reader.readString());
       msg.setBuyerPhone(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRandomCodeOrder(value);
       break;
     default:
       reader.skipField();
@@ -3158,6 +3223,13 @@ proto.order.CreateResponse.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       15,
+      f
+    );
+  }
+  f = message.getRandomCodeOrder();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
       f
     );
   }
@@ -3431,6 +3503,24 @@ proto.order.CreateResponse.prototype.getBuyerPhone = function() {
  */
 proto.order.CreateResponse.prototype.setBuyerPhone = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional string random_code_order = 16;
+ * @return {string}
+ */
+proto.order.CreateResponse.prototype.getRandomCodeOrder = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.order.CreateResponse} returns this
+ */
+proto.order.CreateResponse.prototype.setRandomCodeOrder = function(value) {
+  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
@@ -3940,7 +4030,8 @@ proto.order.UpdateResponse.toObject = function(includeInstance, msg) {
     source: jspb.Message.getFieldWithDefault(msg, 12, ""),
     buyerName: jspb.Message.getFieldWithDefault(msg, 13, ""),
     buyerEmail: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    buyerPhone: jspb.Message.getFieldWithDefault(msg, 15, "")
+    buyerPhone: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    randomCodeOrder: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
 
   if (includeInstance) {
@@ -4036,6 +4127,10 @@ proto.order.UpdateResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 15:
       var value = /** @type {string} */ (reader.readString());
       msg.setBuyerPhone(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRandomCodeOrder(value);
       break;
     default:
       reader.skipField();
@@ -4168,6 +4263,13 @@ proto.order.UpdateResponse.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       15,
+      f
+    );
+  }
+  f = message.getRandomCodeOrder();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
       f
     );
   }
@@ -4441,6 +4543,24 @@ proto.order.UpdateResponse.prototype.getBuyerPhone = function() {
  */
 proto.order.UpdateResponse.prototype.setBuyerPhone = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional string random_code_order = 16;
+ * @return {string}
+ */
+proto.order.UpdateResponse.prototype.getRandomCodeOrder = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.order.UpdateResponse} returns this
+ */
+proto.order.UpdateResponse.prototype.setRandomCodeOrder = function(value) {
+  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 

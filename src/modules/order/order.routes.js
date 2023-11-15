@@ -10,8 +10,8 @@ router.put(
     orderControllers.createOrder
   );
 
-router.get(
-    "/:id?",
+router.post(
+    "/:page?",
     usersMiddleware.checkSessionValidate,
     orderControllers.getOrders
   );
@@ -22,6 +22,12 @@ router.post(
     usersMiddleware.checkSessionValidate,
     orderControllers.getOrdersByCreateUid
   );
+
+router.post(
+  "/find/:page?",
+  usersMiddleware.checkSessionValidate,
+  orderControllers.findOrder
+);
 
 router.post(
     "/update",

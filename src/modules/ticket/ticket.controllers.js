@@ -51,3 +51,18 @@ exports.getTickets = async (req, res) => {
         return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
 };
+
+exports.generateTicketPdf = async (req, res) => {
+    try {
+        const ticket_id = req.body;
+        const ticket = await ticketService.generateTicketPdf(ticket_id);
+        const response = {
+            "message": "session ok",
+            "data": ticket
+        }
+        return res.status(statusCode["OK"]).json(response);
+        
+    } catch (error) {
+        
+    }
+};

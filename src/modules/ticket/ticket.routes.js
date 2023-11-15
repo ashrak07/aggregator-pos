@@ -16,4 +16,10 @@ router.post(
     
 );
 
+router.post(
+    "/generatePdf",
+    usersMiddleware.checkSessionValidate,
+    ticketControllers.generateTicketPdf,
+);
+
 module.exports = router;

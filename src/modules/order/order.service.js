@@ -1,9 +1,11 @@
 const grpcClient = require("../../grpc-clients/client.grpc");
+const eventService = require("../event/event.services");
 const {CreateRequest} = require("../../generated_pb/order_pb");
 const {OrderQuery} = require("../../generated_pb/order_pb");
 const {UpdateRequest} = require("../../generated_pb/order_pb");
 const {DeleteRequest} = require("../../generated_pb/order_pb");
 const {CheckQuery} = require("../../generated_pb/order_pb");
+const {FindRequest} = require("../../generated_pb/order_pb");
 
 exports.createOrder = async (order_req) => {
     console.log("invoking createOrder");
@@ -33,18 +35,19 @@ exports.createOrder = async (order_req) => {
                 const order_res = {
                     id: res.getId(),
                     name: res.getName(),
-                    partnerId: res.getPartnerId(),
+                    partner_id: res.getPartnerId(),
                     state: res.getState(),
-                    dateOrder: res.getDateOrder(),
-                    createDate: res.getCreateDate(),
-                    createUid: res.getCreateUid(),
-                    writeDate: res.getWriteDate(),
-                    amountTotal: res.getAmountTotal(),
+                    date_order: res.getDateOrder(),
+                    create_date: res.getCreateDate(),
+                    create_uid: res.getCreateUid(),
+                    write_uid: res.getWriteUid(),
+                    write_date: res.getWriteDate(),
+                    amount_Total: res.getAmountTotal(),
                     note: res.getNote(),
                     source: res.getSource(),
-                    buyerName: res.getBuyerName(),
-                    buyerEmail: res.getBuyerEmail(),
-                    buyerPhone: res.getBuyerPhone(),
+                    buyer_name: res.getBuyerName(),
+                    buyer_email: res.getBuyerEmail(),
+                    buyer_phone: res.getBuyerPhone(),
 
                 };
                 resolve(order_res);
@@ -60,11 +63,12 @@ exports.createOrder = async (order_req) => {
 
 }
 
-exports.getOrders = async (id) => {
+exports.getOrders = async (id,page) => {
     console.log("invoking getOrder");
 
     const req = new OrderQuery()
-    .setId(id);
+    .setId(id)
+    .setPage(page);
 
     console.log("returning promise");
     return new Promise((resolve, reject) => {
@@ -85,6 +89,8 @@ exports.getOrders = async (id) => {
                     buyer_name: order.getBuyerName(),
                     buyer_email: order.getBuyerEmail(),
                     buyer_phone: order.getBuyerPhone(),
+                    random_code_order : order.getRandomCodeOrder(),
+                    // event_name: getEventName("116"),
                 }));
 
                 resolve(orders);
@@ -98,6 +104,26 @@ exports.getOrders = async (id) => {
 
 };
 
+ async function getEventName (id){
+    console.log("invoking getEventName");
+    const event_request = {
+        "field_name": ["id"],
+        "field_value": [id],
+    };
+
+    return new Promise( async (resolve, reject) => {   
+        try {
+            const event = await eventService.getEvents(event_request);
+            console.log("event: ",event[0].name.toString());
+            resolve(event[0].name.toString());
+        } catch (error) {
+            console.log("Error getEventName: ", error);
+        reject(error);
+        }
+    })
+    
+};
+
 exports.getOrdersByCreateUid = async (id,page,nb) => {
     console.log("invoking getOrder");
 
@@ -109,6 +135,53 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
     console.log("returning promise");
     return new Promise((resolve, reject) => {
         const call = grpcClient.getOrderInstance().getOrdersByCreateUid(req, (err, res) => {
+            if (!err) {
+                const orders = res.getOrderList().map((order) =>({
+                    id: order.getId(),
+                    name: order.getName(),
+                    partner_id: order.getPartnerId(),
+                    state: order.getState(),
+                    date_order: order.getDateOrder(),
+                    create_date: order.getCreateDate(),
+                    create_uid: order.getCreateUid(),
+                    write_date: order.getWriteDate(),
+                    amount_total: order.getAmountTotal(),
+                    note: order.getNote(),
+                    source: order.getSource(),
+                    buyer_name: order.getBuyerName(),
+                    buyer_email: order.getBuyerEmail(),
+                    buyer_phone: order.getBuyerPhone(),
+                    random_code_order : order.getRandomCodeOrder(),
+                    //event_name: getEventName("116"),
+                }));
+
+                resolve(orders);
+            }
+            else{
+                console.log("Error getOrder: ", err);
+                reject(err);
+            }
+        });
+    });
+
+};
+
+exports.findOrder = async (id,buyer_name, page,field_name,field_value,dateFrom,DateTo) => {
+    console.log("invoking findOrder");
+
+    const req = new FindRequest();
+    req.setId(id)
+    .setBuyerName(buyer_name)
+    .setPage(page)
+    .setFieldNameList(field_name)
+    .setFieldValueList(field_value)
+    .setDateFrom(dateFrom)
+    .setDateTo(DateTo);
+
+    console.log("returning promise");
+
+    return new Promise( (resolve, reject) => {
+        const call = grpcClient.getOrderInstance().findOrder(req, (err, res) => {
             if (!err) {
                 const orders = res.getOrderList().map((order) => ({
                     id: order.getId(),
@@ -125,6 +198,8 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
                     buyer_name: order.getBuyerName(),
                     buyer_email: order.getBuyerEmail(),
                     buyer_phone: order.getBuyerPhone(),
+                    random_code_order : order.getRandomCodeOrder(),
+                    // event_name: getEventName("116"),
                 }));
 
                 resolve(orders);
@@ -135,7 +210,6 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
             }
         });
     });
-
 };
 
 exports.updateOrder = async (order_req) => {

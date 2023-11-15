@@ -520,113 +520,113 @@ proto.shop.Shop.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
+  f = message.getName();
+  if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 3));
-  if (f != null) {
+  f = message.getAddress();
+  if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 4));
-  if (f != null) {
+  f = message.getCity();
+  if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 5));
-  if (f != null) {
+  f = message.getOpeningHour();
+  if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 6));
-  if (f != null) {
+  f = message.getClosingHour();
+  if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 7));
-  if (f != null) {
+  f = message.getPhoneNumber();
+  if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 8));
-  if (f != null) {
+  f = message.getActive();
+  if (f) {
     writer.writeBool(
       8,
       f
     );
   }
-  f = /** @type {number} */ (jspb.Message.getField(message, 9));
-  if (f != null) {
+  f = message.getZipCode();
+  if (f !== 0) {
     writer.writeInt32(
       9,
       f
     );
   }
-  f = /** @type {number} */ (jspb.Message.getField(message, 10));
-  if (f != null) {
+  f = message.getCreatorUid();
+  if (f !== 0) {
     writer.writeInt32(
       10,
       f
     );
   }
-  f = /** @type {number} */ (jspb.Message.getField(message, 11));
-  if (f != null) {
+  f = message.getParentCreatorUid();
+  if (f !== 0) {
     writer.writeInt32(
       11,
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 12));
-  if (f != null) {
+  f = message.getShowLastname();
+  if (f) {
     writer.writeBool(
       12,
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 13));
-  if (f != null) {
+  f = message.getShowFirstname();
+  if (f) {
     writer.writeBool(
       13,
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 14));
-  if (f != null) {
+  f = message.getShowEmail();
+  if (f) {
     writer.writeBool(
       14,
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 15));
-  if (f != null) {
+  f = message.getShowPhone();
+  if (f) {
     writer.writeBool(
       15,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 16));
-  if (f != null) {
+  f = message.getCreatedAt();
+  if (f.length > 0) {
     writer.writeString(
       16,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 17));
-  if (f != null) {
+  f = message.getUpdatedAt();
+  if (f.length > 0) {
     writer.writeString(
       17,
       f
@@ -667,25 +667,7 @@ proto.shop.Shop.prototype.getName = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setName = function(value) {
-  return jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearName = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasName = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -703,25 +685,7 @@ proto.shop.Shop.prototype.getAddress = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setAddress = function(value) {
-  return jspb.Message.setField(this, 3, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearAddress = function() {
-  return jspb.Message.setField(this, 3, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasAddress = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -739,25 +703,7 @@ proto.shop.Shop.prototype.getCity = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setCity = function(value) {
-  return jspb.Message.setField(this, 4, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearCity = function() {
-  return jspb.Message.setField(this, 4, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasCity = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -775,25 +721,7 @@ proto.shop.Shop.prototype.getOpeningHour = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setOpeningHour = function(value) {
-  return jspb.Message.setField(this, 5, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearOpeningHour = function() {
-  return jspb.Message.setField(this, 5, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasOpeningHour = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -811,25 +739,7 @@ proto.shop.Shop.prototype.getClosingHour = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setClosingHour = function(value) {
-  return jspb.Message.setField(this, 6, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearClosingHour = function() {
-  return jspb.Message.setField(this, 6, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasClosingHour = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -847,25 +757,7 @@ proto.shop.Shop.prototype.getPhoneNumber = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setPhoneNumber = function(value) {
-  return jspb.Message.setField(this, 7, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearPhoneNumber = function() {
-  return jspb.Message.setField(this, 7, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasPhoneNumber = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -883,25 +775,7 @@ proto.shop.Shop.prototype.getActive = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setActive = function(value) {
-  return jspb.Message.setField(this, 8, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearActive = function() {
-  return jspb.Message.setField(this, 8, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasActive = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
@@ -919,25 +793,7 @@ proto.shop.Shop.prototype.getZipCode = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setZipCode = function(value) {
-  return jspb.Message.setField(this, 9, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearZipCode = function() {
-  return jspb.Message.setField(this, 9, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasZipCode = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
@@ -955,25 +811,7 @@ proto.shop.Shop.prototype.getCreatorUid = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setCreatorUid = function(value) {
-  return jspb.Message.setField(this, 10, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearCreatorUid = function() {
-  return jspb.Message.setField(this, 10, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasCreatorUid = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
@@ -991,25 +829,7 @@ proto.shop.Shop.prototype.getParentCreatorUid = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setParentCreatorUid = function(value) {
-  return jspb.Message.setField(this, 11, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearParentCreatorUid = function() {
-  return jspb.Message.setField(this, 11, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasParentCreatorUid = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
@@ -1027,25 +847,7 @@ proto.shop.Shop.prototype.getShowLastname = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setShowLastname = function(value) {
-  return jspb.Message.setField(this, 12, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearShowLastname = function() {
-  return jspb.Message.setField(this, 12, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasShowLastname = function() {
-  return jspb.Message.getField(this, 12) != null;
+  return jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 
@@ -1063,25 +865,7 @@ proto.shop.Shop.prototype.getShowFirstname = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setShowFirstname = function(value) {
-  return jspb.Message.setField(this, 13, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearShowFirstname = function() {
-  return jspb.Message.setField(this, 13, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasShowFirstname = function() {
-  return jspb.Message.getField(this, 13) != null;
+  return jspb.Message.setProto3BooleanField(this, 13, value);
 };
 
 
@@ -1099,25 +883,7 @@ proto.shop.Shop.prototype.getShowEmail = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setShowEmail = function(value) {
-  return jspb.Message.setField(this, 14, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearShowEmail = function() {
-  return jspb.Message.setField(this, 14, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasShowEmail = function() {
-  return jspb.Message.getField(this, 14) != null;
+  return jspb.Message.setProto3BooleanField(this, 14, value);
 };
 
 
@@ -1135,25 +901,7 @@ proto.shop.Shop.prototype.getShowPhone = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setShowPhone = function(value) {
-  return jspb.Message.setField(this, 15, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearShowPhone = function() {
-  return jspb.Message.setField(this, 15, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasShowPhone = function() {
-  return jspb.Message.getField(this, 15) != null;
+  return jspb.Message.setProto3BooleanField(this, 15, value);
 };
 
 
@@ -1171,25 +919,7 @@ proto.shop.Shop.prototype.getCreatedAt = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setCreatedAt = function(value) {
-  return jspb.Message.setField(this, 16, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearCreatedAt = function() {
-  return jspb.Message.setField(this, 16, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasCreatedAt = function() {
-  return jspb.Message.getField(this, 16) != null;
+  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
@@ -1207,25 +937,7 @@ proto.shop.Shop.prototype.getUpdatedAt = function() {
  * @return {!proto.shop.Shop} returns this
  */
 proto.shop.Shop.prototype.setUpdatedAt = function(value) {
-  return jspb.Message.setField(this, 17, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.shop.Shop} returns this
- */
-proto.shop.Shop.prototype.clearUpdatedAt = function() {
-  return jspb.Message.setField(this, 17, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.shop.Shop.prototype.hasUpdatedAt = function() {
-  return jspb.Message.getField(this, 17) != null;
+  return jspb.Message.setProto3StringField(this, 17, value);
 };
 
 

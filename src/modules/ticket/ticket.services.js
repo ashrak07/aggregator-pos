@@ -3,6 +3,7 @@ const clientGrpc = require("../../grpc-clients/client.grpc");
 const {GetTicketTypeRequest} = require("../../generated_pb/event_pb");
 const {Order} = require("../../generated_pb/ticket_pb");
 const {TicketQuery} = require("../../generated_pb/ticket_pb");
+const {TicketPdfRequest} = require("../../generated_pb/ticket_pb");
 
 exports.getTicketTypes = async (name,value,page) => {
     console.log("invoking getTicketTypes");
@@ -125,4 +126,29 @@ exports.getTickets = async (req) => {
             }
         });
     });
+};
+
+exports.generateTicketPdf = async (ticket_id) => {
+    console.log("invoking generateTicketPdf");
+
+    const req = new TicketPdfRequest()
+    .setTicketsIdsList(ticket_id.id)
+    .setOrderId(ticket_id.order_id);
+
+    return new Promise((resolve, reject) => {
+        clientGrpc.getTicketInstance().generateTicketPdf(req, (err, res) => {
+            if (!err) {
+                
+                const response = {
+                    pdf: res.getPdf()
+                }
+                resolve(response);
+            }
+            else{
+                console.log("Error generateTicketPdf: ", err);
+                reject(err);
+            }
+        });
+    });
+
 };
