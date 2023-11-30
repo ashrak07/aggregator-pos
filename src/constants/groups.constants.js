@@ -1,0 +1,12 @@
+
+module.exports = {
+    ADMIN_GROUP: 1,
+    PLANNER_GROUP: 2,
+    ANALYST_GROUP: 3,
+    POS_GROUP: 4,
+    CHECKER_GROUP: 5,
+    SUPER_PLANNER_GROUP: 6,
+    SUPER_CHECKER_GROUP: 7,
+    SUPER_POS_GROUP: 8,
+    CUSTOMER_GROUP: 9,
+};

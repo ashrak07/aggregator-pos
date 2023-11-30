@@ -42,7 +42,7 @@ exports.createOrder = async (order_req) => {
                     create_uid: res.getCreateUid(),
                     write_uid: res.getWriteUid(),
                     write_date: res.getWriteDate(),
-                    amount_Total: res.getAmountTotal(),
+                    amount_total: res.getAmountTotal(),
                     note: res.getNote(),
                     source: res.getSource(),
                     buyer_name: res.getBuyerName(),
@@ -125,7 +125,7 @@ exports.getOrders = async (id,page) => {
 };
 
 exports.getOrdersByCreateUid = async (id,page,nb) => {
-    console.log("invoking getOrder");
+    console.log("invoking getOrderByCreateUid");
 
     const req = new OrderQuery()
     .setId(id)
@@ -158,7 +158,7 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
                 resolve(orders);
             }
             else{
-                console.log("Error getOrder: ", err);
+                console.log("Error getOrderByCreateUid: ", err);
                 reject(err);
             }
         });
@@ -205,7 +205,7 @@ exports.findOrder = async (id,buyer_name, page,field_name,field_value,dateFrom,D
                 resolve(orders);
             }
             else{
-                console.log("Error getOrder: ", err);
+                console.log("Error findOrder: ", err);
                 reject(err);
             }
         });
@@ -220,10 +220,8 @@ exports.updateOrder = async (order_req) => {
     .setName(order_req.name)
     .setPartnerId(order_req.partner_id)
     .setState(order_req.state)
-    //.setDateOrder(order_req.date_order)
-    //.setCreateDate(order_req.create_date)
     .setCreateUid(order_req.create_uid)
-    //.setWriteDate(order_req.write_date)
+    .setWriteUid(order_req.write_uid)
     .setAmountTotal(order_req.amount_total)
     .setNote(order_req.note)
     .setBuyerEmail(order_req.buyer_email)
@@ -233,6 +231,7 @@ exports.updateOrder = async (order_req) => {
     
 
     return new Promise((resolve, reject) => {
+        console.log("grpc req",req);
         grpcClient.getOrderInstance().updateOrder(req, (err, res) => {
             if (!err) {
                 const order_res = {

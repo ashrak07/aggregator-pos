@@ -13,6 +13,6 @@ exports.login = async (req, res) => {
          });
     } catch (error) {
         console.log("Error controller login user : ", error);
-        return res.status(statusCode["INTERNAL_SERVER_ERROR"]).json({message : "ERROR SERVER", errorMessage : error.message });
+        return res.status(statusCode["UNAUTHORIZED"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
 }

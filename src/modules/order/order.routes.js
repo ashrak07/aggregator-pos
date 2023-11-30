@@ -11,12 +11,6 @@ router.put(
   );
 
 router.post(
-    "/:page?",
-    usersMiddleware.checkSessionValidate,
-    orderControllers.getOrders
-  );
-
-router.post(
     "/createUid/:page?/:nb?",
     orderMiddleware.listOrdersValidate,
     usersMiddleware.checkSessionValidate,
