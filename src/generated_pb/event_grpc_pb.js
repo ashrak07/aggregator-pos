@@ -26,6 +26,39 @@ function deserialize_event_AllEvents(buffer_arg) {
   return event_pb.AllEvents.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_event_AllTagsResponse(arg) {
+  if (!(arg instanceof event_pb.AllTagsResponse)) {
+    throw new Error('Expected argument of type event.AllTagsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_AllTagsResponse(buffer_arg) {
+  return event_pb.AllTagsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_CreateEventPlaceRequest(arg) {
+  if (!(arg instanceof event_pb.CreateEventPlaceRequest)) {
+    throw new Error('Expected argument of type event.CreateEventPlaceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_CreateEventPlaceRequest(buffer_arg) {
+  return event_pb.CreateEventPlaceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_CreateEventPlaceResponse(arg) {
+  if (!(arg instanceof event_pb.CreateEventPlaceResponse)) {
+    throw new Error('Expected argument of type event.CreateEventPlaceResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_CreateEventPlaceResponse(buffer_arg) {
+  return event_pb.CreateEventPlaceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_event_DeleteEventRequest(arg) {
   if (!(arg instanceof event_pb.DeleteEventRequest)) {
     throw new Error('Expected argument of type event.DeleteEventRequest');
@@ -90,6 +123,17 @@ function serialize_event_GetEventsByIdsRequest(arg) {
 
 function deserialize_event_GetEventsByIdsRequest(buffer_arg) {
   return event_pb.GetEventsByIdsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_GetTagsRequest(arg) {
+  if (!(arg instanceof event_pb.GetTagsRequest)) {
+    throw new Error('Expected argument of type event.GetTagsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetTagsRequest(buffer_arg) {
+  return event_pb.GetTagsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_event_GetTicketTypeRequest(arg) {
@@ -170,6 +214,28 @@ var EventService = exports.EventService = {
     requestDeserialize: deserialize_event_GetEventsByIdsRequest,
     responseSerialize: serialize_event_EventsInformations,
     responseDeserialize: deserialize_event_EventsInformations,
+  },
+  getTags: {
+    path: '/event.Event/GetTags',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetTagsRequest,
+    responseType: event_pb.AllTagsResponse,
+    requestSerialize: serialize_event_GetTagsRequest,
+    requestDeserialize: deserialize_event_GetTagsRequest,
+    responseSerialize: serialize_event_AllTagsResponse,
+    responseDeserialize: deserialize_event_AllTagsResponse,
+  },
+  createEventPlace: {
+    path: '/event.Event/CreateEventPlace',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.CreateEventPlaceRequest,
+    responseType: event_pb.CreateEventPlaceResponse,
+    requestSerialize: serialize_event_CreateEventPlaceRequest,
+    requestDeserialize: deserialize_event_CreateEventPlaceRequest,
+    responseSerialize: serialize_event_CreateEventPlaceResponse,
+    responseDeserialize: deserialize_event_CreateEventPlaceResponse,
   },
 };
 

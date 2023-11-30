@@ -6,7 +6,8 @@ exports.login = async (user) => {
 
   const req =  new UserLogin()
     .setEmail(user.email)
-    .setPassword(user.password);
+    .setPassword(user.password)
+    ;
 
   return new Promise((resolve, reject) => {
     clientGrpc.getUserInstance().login(req, (err, res) => {

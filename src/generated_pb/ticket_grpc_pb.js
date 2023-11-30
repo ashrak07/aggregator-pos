@@ -147,6 +147,17 @@ function deserialize_ticket_TicketResponse(buffer_arg) {
   return ticket_pb.TicketResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ticket_TicketlistQuery(arg) {
+  if (!(arg instanceof ticket_pb.TicketlistQuery)) {
+    throw new Error('Expected argument of type ticket.TicketlistQuery');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ticket_TicketlistQuery(buffer_arg) {
+  return ticket_pb.TicketlistQuery.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var TicketService = exports.TicketService = {
   createTicket: {
@@ -214,6 +225,17 @@ var TicketService = exports.TicketService = {
     requestDeserialize: deserialize_ticket_Order,
     responseSerialize: serialize_ticket_CreateOrderTicketResponse,
     responseDeserialize: deserialize_ticket_CreateOrderTicketResponse,
+  },
+  ticketList: {
+    path: '/ticket.Ticket/TicketList',
+    requestStream: false,
+    responseStream: false,
+    requestType: ticket_pb.TicketlistQuery,
+    responseType: ticket_pb.TicketResponse,
+    requestSerialize: serialize_ticket_TicketlistQuery,
+    requestDeserialize: deserialize_ticket_TicketlistQuery,
+    responseSerialize: serialize_ticket_TicketResponse,
+    responseDeserialize: deserialize_ticket_TicketResponse,
   },
   generateTicketPdf: {
     path: '/ticket.Ticket/GenerateTicketPdf',

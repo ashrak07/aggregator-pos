@@ -37,6 +37,28 @@ function deserialize_badge_BadgeResponse(buffer_arg) {
   return badge_pb.BadgeResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_badge_BadgelistQuery(arg) {
+  if (!(arg instanceof badge_pb.BadgelistQuery)) {
+    throw new Error('Expected argument of type badge.BadgelistQuery');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_badge_BadgelistQuery(buffer_arg) {
+  return badge_pb.BadgelistQuery.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_badge_BadgelistResponse(arg) {
+  if (!(arg instanceof badge_pb.BadgelistResponse)) {
+    throw new Error('Expected argument of type badge.BadgelistResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_badge_BadgelistResponse(buffer_arg) {
+  return badge_pb.BadgelistResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_badge_CreateBadgeRequest(arg) {
   if (!(arg instanceof badge_pb.CreateBadgeRequest)) {
     throw new Error('Expected argument of type badge.CreateBadgeRequest');
@@ -57,6 +79,17 @@ function serialize_badge_CreateBadgeResponse(arg) {
 
 function deserialize_badge_CreateBadgeResponse(buffer_arg) {
   return badge_pb.CreateBadgeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_badge_FindQuery(arg) {
+  if (!(arg instanceof badge_pb.FindQuery)) {
+    throw new Error('Expected argument of type badge.FindQuery');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_badge_FindQuery(buffer_arg) {
+  return badge_pb.FindQuery.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -93,6 +126,28 @@ var BadgeService = exports.BadgeService = {
     requestDeserialize: deserialize_badge_BadgeRequest,
     responseSerialize: serialize_badge_BadgeResponse,
     responseDeserialize: deserialize_badge_BadgeResponse,
+  },
+  getBadgeList: {
+    path: '/badge.Badge/GetBadgeList',
+    requestStream: false,
+    responseStream: false,
+    requestType: badge_pb.BadgelistQuery,
+    responseType: badge_pb.BadgelistResponse,
+    requestSerialize: serialize_badge_BadgelistQuery,
+    requestDeserialize: deserialize_badge_BadgelistQuery,
+    responseSerialize: serialize_badge_BadgelistResponse,
+    responseDeserialize: deserialize_badge_BadgelistResponse,
+  },
+  findBadge: {
+    path: '/badge.Badge/FindBadge',
+    requestStream: false,
+    responseStream: false,
+    requestType: badge_pb.FindQuery,
+    responseType: badge_pb.BadgelistResponse,
+    requestSerialize: serialize_badge_FindQuery,
+    requestDeserialize: deserialize_badge_FindQuery,
+    responseSerialize: serialize_badge_BadgelistResponse,
+    responseDeserialize: deserialize_badge_BadgelistResponse,
   },
 };
 
