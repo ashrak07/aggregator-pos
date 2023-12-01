@@ -3,6 +3,18 @@
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var shop_pb = require('./shop_pb.js');
+var event_pb = require('./event_pb.js');
+
+function serialize_event_EventsInformations(arg) {
+  if (!(arg instanceof event_pb.EventsInformations)) {
+    throw new Error('Expected argument of type event.EventsInformations');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_EventsInformations(buffer_arg) {
+  return event_pb.EventsInformations.deserializeBinary(new Uint8Array(buffer_arg));
+}
 
 function serialize_shop_EventShopCreate(arg) {
   if (!(arg instanceof shop_pb.EventShopCreate)) {
@@ -13,6 +25,17 @@ function serialize_shop_EventShopCreate(arg) {
 
 function deserialize_shop_EventShopCreate(buffer_arg) {
   return shop_pb.EventShopCreate.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_shop_ListEventRequest(arg) {
+  if (!(arg instanceof shop_pb.ListEventRequest)) {
+    throw new Error('Expected argument of type shop.ListEventRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_shop_ListEventRequest(buffer_arg) {
+  return shop_pb.ListEventRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_shop_ListShop(arg) {
@@ -203,6 +226,17 @@ var ShopServiceService = exports.ShopServiceService = {
     requestDeserialize: deserialize_shop_ListShopUserIdRequest,
     responseSerialize: serialize_shop_ListShop,
     responseDeserialize: deserialize_shop_ListShop,
+  },
+  getEventByShopId: {
+    path: '/shop.ShopService/getEventByShopId',
+    requestStream: false,
+    responseStream: false,
+    requestType: shop_pb.ListEventRequest,
+    responseType: event_pb.EventsInformations,
+    requestSerialize: serialize_shop_ListEventRequest,
+    requestDeserialize: deserialize_shop_ListEventRequest,
+    responseSerialize: serialize_event_EventsInformations,
+    responseDeserialize: deserialize_event_EventsInformations,
   },
 };
 

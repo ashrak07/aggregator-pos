@@ -21,6 +21,8 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
+var event_pb = require('./event_pb.js');
+goog.object.extend(proto, event_pb);
 goog.exportSymbol('proto.shop.EventShop', null, global);
 goog.exportSymbol('proto.shop.EventShopCreate', null, global);
 goog.exportSymbol('proto.shop.ListEventRequest', null, global);
