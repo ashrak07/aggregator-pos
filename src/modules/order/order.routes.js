@@ -17,6 +17,12 @@ router.post(
     orderControllers.getOrdersByCreateUid
   );
 
+  router.post(
+    "/all/:page?",
+    usersMiddleware.checkSessionValidate,
+    orderControllers.getOrders
+  );
+
 router.post(
   "/find/:page?",
   usersMiddleware.checkSessionValidate,
