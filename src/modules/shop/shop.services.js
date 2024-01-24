@@ -44,7 +44,5 @@ exports.getShopByUserId = async (shop_req,nb,page) => {
             }
         });
         
-    });
-    
-    
+    });    
 };
