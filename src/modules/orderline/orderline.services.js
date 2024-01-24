@@ -66,12 +66,12 @@ exports.getOrderlinesByOrderId = async (id) => {
     console.log("invoking getOrderlinesyOrderId");
 
     const req = new OrderlineQuery()
-    .setFieldName('id')
-    .setFieldValue(id);
+    .addFieldNameList('id')
+    .addFieldValueList(id);
 
     console.log("returning promise");
     return new Promise((resolve, reject) => {
-        const call = grpcClient.getOrderlineInstance().getOrderlinesByOrderId(req, (err, res) => {
+        const call = grpcClient.getOrderlineInstance().getOrderlines(req, (err, res) => {
             if (!err) {
                 const orders = res.getOrderlineList().map((order) => ({
                     id: order.getId(),
