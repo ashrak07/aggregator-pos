@@ -21,7 +21,7 @@ exports.getOrders = async (req, res) => {
         const page = req.params.page;
         const orders = await orderService.getOrders(id,page);
         const response = {
-            "message": "session ok",
+        "message": "session ok",
             "data": orders
         }
         return res.status(statusCode["OK"]).json(response);

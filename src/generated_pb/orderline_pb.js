@@ -41,7 +41,7 @@ goog.exportSymbol('proto.orderline.UpdateResponse', null, global);
  * @constructor
  */
 proto.orderline.OrderlineQuery = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.orderline.OrderlineQuery.repeatedFields_, null);
 };
 goog.inherits(proto.orderline.OrderlineQuery, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -220,6 +220,13 @@ if (goog.DEBUG && !COMPILED) {
   proto.orderline.UpdateResponse.displayName = 'proto.orderline.UpdateResponse';
 }
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.orderline.OrderlineQuery.repeatedFields_ = [3,4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -251,7 +258,10 @@ proto.orderline.OrderlineQuery.prototype.toObject = function(opt_includeInstance
  */
 proto.orderline.OrderlineQuery.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    nb: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    page: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    fieldNameList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    fieldValueList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -290,7 +300,19 @@ proto.orderline.OrderlineQuery.deserializeBinaryFromReader = function(msg, reade
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
+      msg.setNb(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPage(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldName(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFieldValue(value);
       break;
     default:
       reader.skipField();
@@ -321,10 +343,31 @@ proto.orderline.OrderlineQuery.prototype.serializeBinary = function() {
  */
 proto.orderline.OrderlineQuery.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getNb();
   if (f !== 0) {
     writer.writeInt32(
       1,
+      f
+    );
+  }
+  f = message.getPage();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getFieldNameList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+  f = message.getFieldValueList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
       f
     );
   }
@@ -332,10 +375,10 @@ proto.orderline.OrderlineQuery.serializeBinaryToWriter = function(message, write
 
 
 /**
- * optional int32 id = 1;
+ * optional int32 nb = 1;
  * @return {number}
  */
-proto.orderline.OrderlineQuery.prototype.getId = function() {
+proto.orderline.OrderlineQuery.prototype.getNb = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -344,8 +387,100 @@ proto.orderline.OrderlineQuery.prototype.getId = function() {
  * @param {number} value
  * @return {!proto.orderline.OrderlineQuery} returns this
  */
-proto.orderline.OrderlineQuery.prototype.setId = function(value) {
+proto.orderline.OrderlineQuery.prototype.setNb = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional int32 page = 2;
+ * @return {number}
+ */
+proto.orderline.OrderlineQuery.prototype.getPage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.setPage = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * repeated string field_name = 3;
+ * @return {!Array<string>}
+ */
+proto.orderline.OrderlineQuery.prototype.getFieldNameList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.setFieldNameList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.addFieldName = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.clearFieldNameList = function() {
+  return this.setFieldNameList([]);
+};
+
+
+/**
+ * repeated string field_value = 4;
+ * @return {!Array<string>}
+ */
+proto.orderline.OrderlineQuery.prototype.getFieldValueList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.setFieldValueList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.addFieldValue = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.orderline.OrderlineQuery} returns this
+ */
+proto.orderline.OrderlineQuery.prototype.clearFieldValueList = function() {
+  return this.setFieldValueList([]);
 };
 
 

@@ -81,6 +81,39 @@ function deserialize_event_DeleteEventResponse(buffer_arg) {
   return event_pb.DeleteEventResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_event_DetailSeatsRequest(arg) {
+  if (!(arg instanceof event_pb.DetailSeatsRequest)) {
+    throw new Error('Expected argument of type event.DetailSeatsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_DetailSeatsRequest(buffer_arg) {
+  return event_pb.DetailSeatsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_DetailSeatsResponse(arg) {
+  if (!(arg instanceof event_pb.DetailSeatsResponse)) {
+    throw new Error('Expected argument of type event.DetailSeatsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_DetailSeatsResponse(buffer_arg) {
+  return event_pb.DetailSeatsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_EventPlaceResponse(arg) {
+  if (!(arg instanceof event_pb.EventPlaceResponse)) {
+    throw new Error('Expected argument of type event.EventPlaceResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_EventPlaceResponse(buffer_arg) {
+  return event_pb.EventPlaceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_event_EventsInformations(arg) {
   if (!(arg instanceof event_pb.EventsInformations)) {
     throw new Error('Expected argument of type event.EventsInformations');
@@ -92,6 +125,28 @@ function deserialize_event_EventsInformations(buffer_arg) {
   return event_pb.EventsInformations.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_event_GetEventByPlannerRequest(arg) {
+  if (!(arg instanceof event_pb.GetEventByPlannerRequest)) {
+    throw new Error('Expected argument of type event.GetEventByPlannerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetEventByPlannerRequest(buffer_arg) {
+  return event_pb.GetEventByPlannerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_GetEventByPlannerResponse(arg) {
+  if (!(arg instanceof event_pb.GetEventByPlannerResponse)) {
+    throw new Error('Expected argument of type event.GetEventByPlannerResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetEventByPlannerResponse(buffer_arg) {
+  return event_pb.GetEventByPlannerResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_event_GetEventCategoryRequest(arg) {
   if (!(arg instanceof event_pb.GetEventCategoryRequest)) {
     throw new Error('Expected argument of type event.GetEventCategoryRequest');
@@ -101,6 +156,17 @@ function serialize_event_GetEventCategoryRequest(arg) {
 
 function deserialize_event_GetEventCategoryRequest(buffer_arg) {
   return event_pb.GetEventCategoryRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_GetEventPlaceRequest(arg) {
+  if (!(arg instanceof event_pb.GetEventPlaceRequest)) {
+    throw new Error('Expected argument of type event.GetEventPlaceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetEventPlaceRequest(buffer_arg) {
+  return event_pb.GetEventPlaceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_event_GetEventRequest(arg) {
@@ -156,6 +222,28 @@ function serialize_event_GetTicketTypesResponse(arg) {
 
 function deserialize_event_GetTicketTypesResponse(buffer_arg) {
   return event_pb.GetTicketTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_SumTicketRequest(arg) {
+  if (!(arg instanceof event_pb.SumTicketRequest)) {
+    throw new Error('Expected argument of type event.SumTicketRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_SumTicketRequest(buffer_arg) {
+  return event_pb.SumTicketRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_SumTicketResponse(arg) {
+  if (!(arg instanceof event_pb.SumTicketResponse)) {
+    throw new Error('Expected argument of type event.SumTicketResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_SumTicketResponse(buffer_arg) {
+  return event_pb.SumTicketResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -236,6 +324,50 @@ var EventService = exports.EventService = {
     requestDeserialize: deserialize_event_CreateEventPlaceRequest,
     responseSerialize: serialize_event_CreateEventPlaceResponse,
     responseDeserialize: deserialize_event_CreateEventPlaceResponse,
+  },
+  getEventPlace: {
+    path: '/event.Event/GetEventPlace',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetEventPlaceRequest,
+    responseType: event_pb.EventPlaceResponse,
+    requestSerialize: serialize_event_GetEventPlaceRequest,
+    requestDeserialize: deserialize_event_GetEventPlaceRequest,
+    responseSerialize: serialize_event_EventPlaceResponse,
+    responseDeserialize: deserialize_event_EventPlaceResponse,
+  },
+  getDetailSeats: {
+    path: '/event.Event/GetDetailSeats',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.DetailSeatsRequest,
+    responseType: event_pb.DetailSeatsResponse,
+    requestSerialize: serialize_event_DetailSeatsRequest,
+    requestDeserialize: deserialize_event_DetailSeatsRequest,
+    responseSerialize: serialize_event_DetailSeatsResponse,
+    responseDeserialize: deserialize_event_DetailSeatsResponse,
+  },
+  sumTicket: {
+    path: '/event.Event/SumTicket',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.SumTicketRequest,
+    responseType: event_pb.SumTicketResponse,
+    requestSerialize: serialize_event_SumTicketRequest,
+    requestDeserialize: deserialize_event_SumTicketRequest,
+    responseSerialize: serialize_event_SumTicketResponse,
+    responseDeserialize: deserialize_event_SumTicketResponse,
+  },
+  getEventByPlanner: {
+    path: '/event.Event/GetEventByPlanner',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetEventByPlannerRequest,
+    responseType: event_pb.GetEventByPlannerResponse,
+    requestSerialize: serialize_event_GetEventByPlannerRequest,
+    requestDeserialize: deserialize_event_GetEventByPlannerRequest,
+    responseSerialize: serialize_event_GetEventByPlannerResponse,
+    responseDeserialize: deserialize_event_GetEventByPlannerResponse,
   },
 };
 

@@ -152,6 +152,11 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
                     buyer_email: order.getBuyerEmail(),
                     buyer_phone: order.getBuyerPhone(),
                     random_code_order : order.getRandomCodeOrder(),
+                    event_name : order.getEventName(),
+                    event_id : order.getEventId(),
+                    promo_code_id : order.getPromoCodeId(),
+                    user_id : order.getUserId(),
+                    user_name : order.getUserName()
                     //event_name: getEventName("116"),
                 }));
 
@@ -199,6 +204,11 @@ exports.findOrder = async (id,buyer_name, page,field_name,field_value,dateFrom,D
                     buyer_email: order.getBuyerEmail(),
                     buyer_phone: order.getBuyerPhone(),
                     random_code_order : order.getRandomCodeOrder(),
+                    event_name : order.getEventName(),
+                    event_id : order.getEventId(),
+                    promo_code_id : order.getPromoCodeId(),
+                    user_id : order.getUserId(),
+                    user_name : order.getUserName()
                     // event_name: getEventName("116"),
                 }));
 

@@ -49,6 +49,17 @@ function deserialize_shop_ListShop(buffer_arg) {
   return shop_pb.ListShop.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_shop_ListShopEventIdRequest(arg) {
+  if (!(arg instanceof shop_pb.ListShopEventIdRequest)) {
+    throw new Error('Expected argument of type shop.ListShopEventIdRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_shop_ListShopEventIdRequest(buffer_arg) {
+  return shop_pb.ListShopEventIdRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_shop_ListShopRequest(arg) {
   if (!(arg instanceof shop_pb.ListShopRequest)) {
     throw new Error('Expected argument of type shop.ListShopRequest');
@@ -224,6 +235,17 @@ var ShopServiceService = exports.ShopServiceService = {
     responseType: shop_pb.ListShop,
     requestSerialize: serialize_shop_ListShopUserIdRequest,
     requestDeserialize: deserialize_shop_ListShopUserIdRequest,
+    responseSerialize: serialize_shop_ListShop,
+    responseDeserialize: deserialize_shop_ListShop,
+  },
+  getShopByEventId: {
+    path: '/shop.ShopService/getShopByEventId',
+    requestStream: false,
+    responseStream: false,
+    requestType: shop_pb.ListShopEventIdRequest,
+    responseType: shop_pb.ListShop,
+    requestSerialize: serialize_shop_ListShopEventIdRequest,
+    requestDeserialize: deserialize_shop_ListShopEventIdRequest,
     responseSerialize: serialize_shop_ListShop,
     responseDeserialize: deserialize_shop_ListShop,
   },

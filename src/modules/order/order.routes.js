@@ -10,6 +10,12 @@ router.put(
     orderControllers.createOrder
   );
 
+  router.post(
+    "/all/:page?",
+    usersMiddleware.checkSessionValidate,
+    orderControllers.getOrders
+  );
+
 router.post(
     "/createUid/:page?/:nb?",
     orderMiddleware.listOrdersValidate,

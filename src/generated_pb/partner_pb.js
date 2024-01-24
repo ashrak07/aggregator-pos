@@ -699,7 +699,10 @@ proto.user.PartnerInformations.toObject = function(includeInstance, msg) {
     createUid: jspb.Message.getFieldWithDefault(msg, 11, 0),
     writeUid: jspb.Message.getFieldWithDefault(msg, 12, 0),
     active: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
-    userId: jspb.Message.getFieldWithDefault(msg, 14, 0)
+    userId: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    address: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    gender: jspb.Message.getFieldWithDefault(msg, 16, 0),
+    zipCode: jspb.Message.getFieldWithDefault(msg, 17, 0)
   };
 
   if (includeInstance) {
@@ -791,6 +794,18 @@ proto.user.PartnerInformations.deserializeBinaryFromReader = function(msg, reade
     case 14:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setUserId(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 16:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setGender(value);
+      break;
+    case 17:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setZipCode(value);
       break;
     default:
       reader.skipField();
@@ -916,6 +931,27 @@ proto.user.PartnerInformations.serializeBinaryToWriter = function(message, write
   if (f !== 0) {
     writer.writeInt32(
       14,
+      f
+    );
+  }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
+  }
+  f = message.getGender();
+  if (f !== 0) {
+    writer.writeInt32(
+      16,
+      f
+    );
+  }
+  f = message.getZipCode();
+  if (f !== 0) {
+    writer.writeInt32(
+      17,
       f
     );
   }
@@ -1171,6 +1207,60 @@ proto.user.PartnerInformations.prototype.getUserId = function() {
  */
 proto.user.PartnerInformations.prototype.setUserId = function(value) {
   return jspb.Message.setProto3IntField(this, 14, value);
+};
+
+
+/**
+ * optional string address = 15;
+ * @return {string}
+ */
+proto.user.PartnerInformations.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.PartnerInformations} returns this
+ */
+proto.user.PartnerInformations.prototype.setAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional int32 gender = 16;
+ * @return {number}
+ */
+proto.user.PartnerInformations.prototype.getGender = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.PartnerInformations} returns this
+ */
+proto.user.PartnerInformations.prototype.setGender = function(value) {
+  return jspb.Message.setProto3IntField(this, 16, value);
+};
+
+
+/**
+ * optional int32 zip_code = 17;
+ * @return {number}
+ */
+proto.user.PartnerInformations.prototype.getZipCode = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.PartnerInformations} returns this
+ */
+proto.user.PartnerInformations.prototype.setZipCode = function(value) {
+  return jspb.Message.setProto3IntField(this, 17, value);
 };
 
 

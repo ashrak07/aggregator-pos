@@ -2218,7 +2218,20 @@ proto.user.UserCreate.toObject = function(includeInstance, msg) {
   var f, obj = {
     email: jspb.Message.getFieldWithDefault(msg, 1, ""),
     password: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    group: jspb.Message.getFieldWithDefault(msg, 3, "")
+    group: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    countryId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    city: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    phone: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    mobile: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    birthDate: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    firstname: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    zipCode: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    createUid: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    writeUid: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    active: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+    lastname: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    address: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    gender: jspb.Message.getFieldWithDefault(msg, 16, 0)
   };
 
   if (includeInstance) {
@@ -2267,6 +2280,58 @@ proto.user.UserCreate.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setGroup(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setCountryId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCity(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhone(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMobile(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBirthDate(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstname(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setZipCode(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setCreateUid(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setWriteUid(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastname(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 16:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setGender(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2314,6 +2379,97 @@ proto.user.UserCreate.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getCountryId();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getCity();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getPhone();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getMobile();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getBirthDate();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getFirstname();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getZipCode();
+  if (f !== 0) {
+    writer.writeInt32(
+      10,
+      f
+    );
+  }
+  f = message.getCreateUid();
+  if (f !== 0) {
+    writer.writeInt32(
+      11,
+      f
+    );
+  }
+  f = message.getWriteUid();
+  if (f !== 0) {
+    writer.writeInt32(
+      12,
+      f
+    );
+  }
+  f = message.getActive();
+  if (f) {
+    writer.writeBool(
+      13,
+      f
+    );
+  }
+  f = message.getLastname();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
+  }
+  f = message.getGender();
+  if (f !== 0) {
+    writer.writeInt32(
+      16,
       f
     );
   }
@@ -2371,6 +2527,240 @@ proto.user.UserCreate.prototype.getGroup = function() {
  */
 proto.user.UserCreate.prototype.setGroup = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int32 country_id = 4;
+ * @return {number}
+ */
+proto.user.UserCreate.prototype.getCountryId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setCountryId = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional string city = 5;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getCity = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setCity = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string phone = 6;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getPhone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setPhone = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string mobile = 7;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getMobile = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setMobile = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string birth_date = 8;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getBirthDate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setBirthDate = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string firstname = 9;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getFirstname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setFirstname = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional int32 zip_code = 10;
+ * @return {number}
+ */
+proto.user.UserCreate.prototype.getZipCode = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setZipCode = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional int32 create_uid = 11;
+ * @return {number}
+ */
+proto.user.UserCreate.prototype.getCreateUid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setCreateUid = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional int32 write_uid = 12;
+ * @return {number}
+ */
+proto.user.UserCreate.prototype.getWriteUid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setWriteUid = function(value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
+};
+
+
+/**
+ * optional bool active = 13;
+ * @return {boolean}
+ */
+proto.user.UserCreate.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setActive = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 13, value);
+};
+
+
+/**
+ * optional string lastname = 14;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getLastname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setLastname = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional string address = 15;
+ * @return {string}
+ */
+proto.user.UserCreate.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional int32 gender = 16;
+ * @return {number}
+ */
+proto.user.UserCreate.prototype.getGender = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.user.UserCreate} returns this
+ */
+proto.user.UserCreate.prototype.setGender = function(value) {
+  return jspb.Message.setProto3IntField(this, 16, value);
 };
 
 
