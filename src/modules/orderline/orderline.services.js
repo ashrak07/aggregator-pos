@@ -66,7 +66,8 @@ exports.getOrderlinesByOrderId = async (id) => {
     console.log("invoking getOrderlinesyOrderId");
 
     const req = new OrderlineQuery()
-    .setId(id);
+    .setFieldName('id')
+    .setFieldValue(id);
 
     console.log("returning promise");
     return new Promise((resolve, reject) => {
