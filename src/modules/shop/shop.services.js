@@ -34,6 +34,8 @@ exports.getShopByUserId = async (shop_req,nb,page) => {
                     show_firstname: shop.getShowFirstname(),
                     show_email: shop.getShowEmail(),
                     show_phone: shop.getShowPhone(),
+                    created_at: shop.getCreatedAt(),
+                    updated_at: shop.getUpdatedAt()
                 }));
 
                 resolve(shops);
