@@ -125,8 +125,52 @@ function deserialize_user_UserLoginResponse(buffer_arg) {
   return user_pb.UserLoginResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_user_UserModel(arg) {
+  if (!(arg instanceof user_pb.UserModel)) {
+    throw new Error('Expected argument of type user.UserModel');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UserModel(buffer_arg) {
+  return user_pb.UserModel.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_UsersGroupRequest(arg) {
+  if (!(arg instanceof user_pb.UsersGroupRequest)) {
+    throw new Error('Expected argument of type user.UsersGroupRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UsersGroupRequest(buffer_arg) {
+  return user_pb.UsersGroupRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_UsersGroupResponse(arg) {
+  if (!(arg instanceof user_pb.UsersGroupResponse)) {
+    throw new Error('Expected argument of type user.UsersGroupResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UsersGroupResponse(buffer_arg) {
+  return user_pb.UsersGroupResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var UserServiceService = exports.UserServiceService = {
+  getUserById: {
+    path: '/user.UserService/getUserById',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UserId,
+    responseType: user_pb.UserModel,
+    requestSerialize: serialize_user_UserId,
+    requestDeserialize: deserialize_user_UserId,
+    responseSerialize: serialize_user_UserModel,
+    responseDeserialize: deserialize_user_UserModel,
+  },
   getUser: {
     path: '/user.UserService/getUser',
     requestStream: false,
@@ -203,6 +247,17 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_user_PlannerQuery,
     responseSerialize: serialize_user_PlannerModels,
     responseDeserialize: deserialize_user_PlannerModels,
+  },
+  getUsersGroup: {
+    path: '/user.UserService/GetUsersGroup',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UsersGroupRequest,
+    responseType: user_pb.UsersGroupResponse,
+    requestSerialize: serialize_user_UsersGroupRequest,
+    requestDeserialize: deserialize_user_UsersGroupRequest,
+    responseSerialize: serialize_user_UsersGroupResponse,
+    responseDeserialize: deserialize_user_UsersGroupResponse,
   },
 };
 

@@ -27,6 +27,17 @@ function deserialize_shop_EventShopCreate(buffer_arg) {
   return shop_pb.EventShopCreate.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_shop_FindRequest(arg) {
+  if (!(arg instanceof shop_pb.FindRequest)) {
+    throw new Error('Expected argument of type shop.FindRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_shop_FindRequest(buffer_arg) {
+  return shop_pb.FindRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_shop_ListEventRequest(arg) {
   if (!(arg instanceof shop_pb.ListEventRequest)) {
     throw new Error('Expected argument of type shop.ListEventRequest');
@@ -259,6 +270,17 @@ var ShopServiceService = exports.ShopServiceService = {
     requestDeserialize: deserialize_shop_ListEventRequest,
     responseSerialize: serialize_event_EventsInformations,
     responseDeserialize: deserialize_event_EventsInformations,
+  },
+  findShop: {
+    path: '/shop.ShopService/findShop',
+    requestStream: false,
+    responseStream: false,
+    requestType: shop_pb.FindRequest,
+    responseType: shop_pb.ListShop,
+    requestSerialize: serialize_shop_FindRequest,
+    requestDeserialize: deserialize_shop_FindRequest,
+    responseSerialize: serialize_shop_ListShop,
+    responseDeserialize: deserialize_shop_ListShop,
   },
 };
 

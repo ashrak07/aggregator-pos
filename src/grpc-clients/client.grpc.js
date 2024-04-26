@@ -1,12 +1,20 @@
 // grpcClient.js
 const grpc = require("@grpc/grpc-js");
 
+const {BaseClient} = require('../generated_pb/base_grpc_pb');
 const {UserServiceClient} = require("../generated_pb/user_grpc_pb");
 const {ShopServiceClient} = require("../generated_pb/shop_grpc_pb");
 const {EventClient} = require("../generated_pb/event_grpc_pb");
 const {OrderClient} = require("../generated_pb/order_grpc_pb");
 const {OrderlineClient} = require("../generated_pb/orderline_grpc_pb");
 const {TicketClient} = require("../generated_pb/ticket_grpc_pb");
+
+exports.getBaseInstance = () => {
+  if (this.baseClient == null) {
+    this.baseClient = new BaseClient(`${process.env.MS_BASE_CONTAINER_NAME}:${process.env.MS_BASE_GRPC_PORT}`, grpc.credentials.createInsecure())
+  }
+  return this.baseClient
+}
 
 exports.getUserInstance = () => {
   if (this.userClient == null) {
