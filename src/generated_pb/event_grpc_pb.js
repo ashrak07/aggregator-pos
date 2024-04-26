@@ -158,6 +158,17 @@ function deserialize_event_GetEventCategoryRequest(buffer_arg) {
   return event_pb.GetEventCategoryRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_event_GetEventListRequest(arg) {
+  if (!(arg instanceof event_pb.GetEventListRequest)) {
+    throw new Error('Expected argument of type event.GetEventListRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetEventListRequest(buffer_arg) {
+  return event_pb.GetEventListRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_event_GetEventPlaceRequest(arg) {
   if (!(arg instanceof event_pb.GetEventPlaceRequest)) {
     throw new Error('Expected argument of type event.GetEventPlaceRequest');
@@ -202,6 +213,17 @@ function deserialize_event_GetTagsRequest(buffer_arg) {
   return event_pb.GetTagsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_event_GetTicketTypeListRequest(arg) {
+  if (!(arg instanceof event_pb.GetTicketTypeListRequest)) {
+    throw new Error('Expected argument of type event.GetTicketTypeListRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetTicketTypeListRequest(buffer_arg) {
+  return event_pb.GetTicketTypeListRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_event_GetTicketTypeRequest(arg) {
   if (!(arg instanceof event_pb.GetTicketTypeRequest)) {
     throw new Error('Expected argument of type event.GetTicketTypeRequest');
@@ -222,6 +244,72 @@ function serialize_event_GetTicketTypesResponse(arg) {
 
 function deserialize_event_GetTicketTypesResponse(buffer_arg) {
   return event_pb.GetTicketTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_GetTurnoverCreatedRequest(arg) {
+  if (!(arg instanceof event_pb.GetTurnoverCreatedRequest)) {
+    throw new Error('Expected argument of type event.GetTurnoverCreatedRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetTurnoverCreatedRequest(buffer_arg) {
+  return event_pb.GetTurnoverCreatedRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_GetTurnoverCreatedResponse(arg) {
+  if (!(arg instanceof event_pb.GetTurnoverCreatedResponse)) {
+    throw new Error('Expected argument of type event.GetTurnoverCreatedResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_GetTurnoverCreatedResponse(buffer_arg) {
+  return event_pb.GetTurnoverCreatedResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_PlaceAvailableRequest(arg) {
+  if (!(arg instanceof event_pb.PlaceAvailableRequest)) {
+    throw new Error('Expected argument of type event.PlaceAvailableRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_PlaceAvailableRequest(buffer_arg) {
+  return event_pb.PlaceAvailableRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_PlaceAvailableResponse(arg) {
+  if (!(arg instanceof event_pb.PlaceAvailableResponse)) {
+    throw new Error('Expected argument of type event.PlaceAvailableResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_PlaceAvailableResponse(buffer_arg) {
+  return event_pb.PlaceAvailableResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_QueryCalculationRequest(arg) {
+  if (!(arg instanceof event_pb.QueryCalculationRequest)) {
+    throw new Error('Expected argument of type event.QueryCalculationRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_QueryCalculationRequest(buffer_arg) {
+  return event_pb.QueryCalculationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_event_QueryCalculationResponse(arg) {
+  if (!(arg instanceof event_pb.QueryCalculationResponse)) {
+    throw new Error('Expected argument of type event.QueryCalculationResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_QueryCalculationResponse(buffer_arg) {
+  return event_pb.QueryCalculationResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_event_SumTicketRequest(arg) {
@@ -250,6 +338,17 @@ function deserialize_event_SumTicketResponse(buffer_arg) {
 var EventService = exports.EventService = {
   getEvents: {
     path: '/event.Event/GetEvents',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetEventRequest,
+    responseType: event_pb.AllEvents,
+    requestSerialize: serialize_event_GetEventRequest,
+    requestDeserialize: deserialize_event_GetEventRequest,
+    responseSerialize: serialize_event_AllEvents,
+    responseDeserialize: deserialize_event_AllEvents,
+  },
+  getAllEvents: {
+    path: '/event.Event/GetAllEvents',
     requestStream: false,
     responseStream: false,
     requestType: event_pb.GetEventRequest,
@@ -368,6 +467,61 @@ var EventService = exports.EventService = {
     requestDeserialize: deserialize_event_GetEventByPlannerRequest,
     responseSerialize: serialize_event_GetEventByPlannerResponse,
     responseDeserialize: deserialize_event_GetEventByPlannerResponse,
+  },
+  getTurnoverCreated: {
+    path: '/event.Event/GetTurnoverCreated',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetTurnoverCreatedRequest,
+    responseType: event_pb.GetTurnoverCreatedResponse,
+    requestSerialize: serialize_event_GetTurnoverCreatedRequest,
+    requestDeserialize: deserialize_event_GetTurnoverCreatedRequest,
+    responseSerialize: serialize_event_GetTurnoverCreatedResponse,
+    responseDeserialize: deserialize_event_GetTurnoverCreatedResponse,
+  },
+  getEventList: {
+    path: '/event.Event/GetEventList',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetEventListRequest,
+    responseType: event_pb.AllEvents,
+    requestSerialize: serialize_event_GetEventListRequest,
+    requestDeserialize: deserialize_event_GetEventListRequest,
+    responseSerialize: serialize_event_AllEvents,
+    responseDeserialize: deserialize_event_AllEvents,
+  },
+  getTicketTypeList: {
+    path: '/event.Event/GetTicketTypeList',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.GetTicketTypeListRequest,
+    responseType: event_pb.GetTicketTypesResponse,
+    requestSerialize: serialize_event_GetTicketTypeListRequest,
+    requestDeserialize: deserialize_event_GetTicketTypeListRequest,
+    responseSerialize: serialize_event_GetTicketTypesResponse,
+    responseDeserialize: deserialize_event_GetTicketTypesResponse,
+  },
+  checkPlaceAvailable: {
+    path: '/event.Event/CheckPlaceAvailable',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.PlaceAvailableRequest,
+    responseType: event_pb.PlaceAvailableResponse,
+    requestSerialize: serialize_event_PlaceAvailableRequest,
+    requestDeserialize: deserialize_event_PlaceAvailableRequest,
+    responseSerialize: serialize_event_PlaceAvailableResponse,
+    responseDeserialize: deserialize_event_PlaceAvailableResponse,
+  },
+  queryCalculation: {
+    path: '/event.Event/QueryCalculation',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.QueryCalculationRequest,
+    responseType: event_pb.QueryCalculationResponse,
+    requestSerialize: serialize_event_QueryCalculationRequest,
+    requestDeserialize: deserialize_event_QueryCalculationRequest,
+    responseSerialize: serialize_event_QueryCalculationResponse,
+    responseDeserialize: deserialize_event_QueryCalculationResponse,
   },
 };
 

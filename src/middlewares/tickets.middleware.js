@@ -3,12 +3,8 @@ const statusCode = require("../constants/status-code.constants");
 
 module.exports.listTicketTypesValidate = async (req, res, next) => {
     try {
-        const id = { 
-            fieldName : req.body.fieldName,
-            fieldValue : req.body.fieldValue,
-        };
 
-        await eventIdSchema.validateAsync(id);
+        await eventIdSchema.validateAsync(req.query);
 
         next();
     } catch (error) {

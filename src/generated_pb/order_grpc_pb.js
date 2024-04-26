@@ -103,6 +103,28 @@ function deserialize_order_FindRequest(buffer_arg) {
   return order_pb.FindRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_order_GetQuery(arg) {
+  if (!(arg instanceof order_pb.GetQuery)) {
+    throw new Error('Expected argument of type order.GetQuery');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_order_GetQuery(buffer_arg) {
+  return order_pb.GetQuery.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_order_MaxUsageResponse(arg) {
+  if (!(arg instanceof order_pb.MaxUsageResponse)) {
+    throw new Error('Expected argument of type order.MaxUsageResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_order_MaxUsageResponse(buffer_arg) {
+  return order_pb.MaxUsageResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_order_OrderQuery(arg) {
   if (!(arg instanceof order_pb.OrderQuery)) {
     throw new Error('Expected argument of type order.OrderQuery');
@@ -123,6 +145,28 @@ function serialize_order_OrderResponse(arg) {
 
 function deserialize_order_OrderResponse(buffer_arg) {
   return order_pb.OrderResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_order_PosResponse(arg) {
+  if (!(arg instanceof order_pb.PosResponse)) {
+    throw new Error('Expected argument of type order.PosResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_order_PosResponse(buffer_arg) {
+  return order_pb.PosResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_order_Response(arg) {
+  if (!(arg instanceof order_pb.Response)) {
+    throw new Error('Expected argument of type order.Response');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_order_Response(buffer_arg) {
+  return order_pb.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_order_UpdateRequest(arg) {
@@ -147,6 +191,17 @@ function deserialize_order_UpdateResponse(buffer_arg) {
   return order_pb.UpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_order_WebsiteResponse(arg) {
+  if (!(arg instanceof order_pb.WebsiteResponse)) {
+    throw new Error('Expected argument of type order.WebsiteResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_order_WebsiteResponse(buffer_arg) {
+  return order_pb.WebsiteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var OrderService = exports.OrderService = {
   getOrders: {
@@ -160,14 +215,47 @@ var OrderService = exports.OrderService = {
     responseSerialize: serialize_order_OrderResponse,
     responseDeserialize: deserialize_order_OrderResponse,
   },
-  getOrdersByCreateUid: {
-    path: '/order.Order/getOrdersByCreateUid',
+  getMaximumUsage: {
+    path: '/order.Order/getMaximumUsage',
     requestStream: false,
     responseStream: false,
-    requestType: order_pb.OrderQuery,
+    requestType: order_pb.FindRequest,
+    responseType: order_pb.MaxUsageResponse,
+    requestSerialize: serialize_order_FindRequest,
+    requestDeserialize: deserialize_order_FindRequest,
+    responseSerialize: serialize_order_MaxUsageResponse,
+    responseDeserialize: deserialize_order_MaxUsageResponse,
+  },
+  getWebsiteDiscount: {
+    path: '/order.Order/getWebsiteDiscount',
+    requestStream: false,
+    responseStream: false,
+    requestType: order_pb.FindRequest,
+    responseType: order_pb.WebsiteResponse,
+    requestSerialize: serialize_order_FindRequest,
+    requestDeserialize: deserialize_order_FindRequest,
+    responseSerialize: serialize_order_WebsiteResponse,
+    responseDeserialize: deserialize_order_WebsiteResponse,
+  },
+  getMontantPosDiscount: {
+    path: '/order.Order/getMontantPosDiscount',
+    requestStream: false,
+    responseStream: false,
+    requestType: order_pb.FindRequest,
+    responseType: order_pb.PosResponse,
+    requestSerialize: serialize_order_FindRequest,
+    requestDeserialize: deserialize_order_FindRequest,
+    responseSerialize: serialize_order_PosResponse,
+    responseDeserialize: deserialize_order_PosResponse,
+  },
+  getMontantRemise: {
+    path: '/order.Order/getMontantRemise',
+    requestStream: false,
+    responseStream: false,
+    requestType: order_pb.FindRequest,
     responseType: order_pb.OrderResponse,
-    requestSerialize: serialize_order_OrderQuery,
-    requestDeserialize: deserialize_order_OrderQuery,
+    requestSerialize: serialize_order_FindRequest,
+    requestDeserialize: deserialize_order_FindRequest,
     responseSerialize: serialize_order_OrderResponse,
     responseDeserialize: deserialize_order_OrderResponse,
   },
@@ -236,6 +324,28 @@ var OrderService = exports.OrderService = {
     requestDeserialize: deserialize_order_ApplyQuery,
     responseSerialize: serialize_order_ApplyResponse,
     responseDeserialize: deserialize_order_ApplyResponse,
+  },
+  getOrderById: {
+    path: '/order.Order/getOrderById',
+    requestStream: false,
+    responseStream: false,
+    requestType: order_pb.GetQuery,
+    responseType: order_pb.Response,
+    requestSerialize: serialize_order_GetQuery,
+    requestDeserialize: deserialize_order_GetQuery,
+    responseSerialize: serialize_order_Response,
+    responseDeserialize: deserialize_order_Response,
+  },
+  filterOrder: {
+    path: '/order.Order/filterOrder',
+    requestStream: false,
+    responseStream: false,
+    requestType: order_pb.FindRequest,
+    responseType: order_pb.OrderResponse,
+    requestSerialize: serialize_order_FindRequest,
+    requestDeserialize: deserialize_order_FindRequest,
+    responseSerialize: serialize_order_OrderResponse,
+    responseDeserialize: deserialize_order_OrderResponse,
   },
 };
 

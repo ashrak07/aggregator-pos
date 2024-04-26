@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "pb:gen": "./scripts/gen.sh user event order ticket badge partner shop orderline"
+    "pb:gen": "./scripts/gen.sh base user event order ticket badge partner shop orderline"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.15",

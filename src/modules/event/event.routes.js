@@ -5,8 +5,8 @@ const usersMiddleware = require("../../middlewares/users.middleware");
 const ticketsMiddleware = require("../../middlewares/tickets.middleware");
 const eventController = require("./event.controllers");
 
-router.post(
-    "/tickets/:page?",
+router.get(
+    "/tickets",
     ticketsMiddleware.listTicketTypesValidate,
     usersMiddleware.checkSessionValidate,
     ticketControllers.getTicketTypes

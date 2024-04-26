@@ -48,6 +48,17 @@ function deserialize_user_PartnerModels(buffer_arg) {
   return partner_pb.PartnerModels.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_user_PartnerUsersGroupRequest(arg) {
+  if (!(arg instanceof partner_pb.PartnerUsersGroupRequest)) {
+    throw new Error('Expected argument of type user.PartnerUsersGroupRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_PartnerUsersGroupRequest(buffer_arg) {
+  return partner_pb.PartnerUsersGroupRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var PartnerService = exports.PartnerService = {
   createPartner: {
@@ -69,6 +80,17 @@ var PartnerService = exports.PartnerService = {
     responseType: partner_pb.PartnerModels,
     requestSerialize: serialize_user_GetByFieldRequest,
     requestDeserialize: deserialize_user_GetByFieldRequest,
+    responseSerialize: serialize_user_PartnerModels,
+    responseDeserialize: deserialize_user_PartnerModels,
+  },
+  getPartnerByUsersGroup: {
+    path: '/user.Partner/GetPartnerByUsersGroup',
+    requestStream: false,
+    responseStream: false,
+    requestType: partner_pb.PartnerUsersGroupRequest,
+    responseType: partner_pb.PartnerModels,
+    requestSerialize: serialize_user_PartnerUsersGroupRequest,
+    requestDeserialize: deserialize_user_PartnerUsersGroupRequest,
     responseSerialize: serialize_user_PartnerModels,
     responseDeserialize: deserialize_user_PartnerModels,
   },

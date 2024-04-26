@@ -8,6 +8,8 @@ exports.getShopByUserId = async (req, res) => {
         const nb = req.params.nb;
         const page = req.params.page;
 
+        console.log('Get Shop By User Id')
+
         const ListShop = await shopService.getShopByUserId(user_id,nb,page);
         const response = {
             "message": "session ok",
