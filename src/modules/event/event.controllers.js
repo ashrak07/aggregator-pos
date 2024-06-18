@@ -3,15 +3,15 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.getEventByShopId = async (req, res) => {
     try {
-        const shop_id = req.body.shop_id;
-        const nb = req.params.nb;
-        const page = req.params.page;
+        const shopId = req.query.shopId;
+        const pageSize = req.query.pageSize || 10;
+        const page = req.query.page || 1 ;
 
-        const ListEvent = await eventService.getEventByShopId(shop_id,nb,page);
+        const events = await eventService.getEventByShopId(shopId, pageSize, page);
 
         const response = {
             "message": "session ok",
-            "data": ListEvent
+            "data": events
         }
         return res.status(statusCode["OK"]).json(response);
     } catch (error) {

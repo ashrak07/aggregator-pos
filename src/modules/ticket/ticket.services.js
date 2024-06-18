@@ -1,10 +1,9 @@
 const clientGrpc = require("../../grpc-clients/client.grpc");
 
 const {GetTicketTypeRequest} = require("../../generated_pb/event_pb");
-const {Order} = require("../../generated_pb/ticket_pb");
-const {TicketQuery} = require("../../generated_pb/ticket_pb");
-const {TicketPdfRequest} = require("../../generated_pb/ticket_pb");
+const {Order, TicketQuery, TicketPdfRequest, TicketTypeByEventRequest} = require("../../generated_pb/ticket_pb");
 const {CurrencyRequest} = require('../../generated_pb/base_pb')
+const {CURRENCY_SYMBOL} = require('../../constants/currency.constants')
 
 exports.getTicketTypes = async (eventId, page) => {
     console.log("invoking getTicketTypes");
@@ -87,6 +86,37 @@ exports.getCurrency = (id) => {
   })
 }
 
+exports.getCurrencyBySymbol = async (symbol) => {
+    const req = new CurrencyRequest()
+        .setPage(1)
+        .setPageSize(1)
+        .setFieldNameList(['symbol'])
+        .setFieldValueList([symbol])
+
+    return new Promise((resolve, reject) => {
+        clientGrpc.getBaseInstance().getCurrencies(req, (err, res) => {
+            if (err) {
+                console.log(`[GET_CURRENCY_ERROR] ==> ${err}`)
+                reject(err)
+            }
+            else {
+                const currency = res.getCurrenciesList()[0]
+                console.log(res.getCurrenciesList())
+                resolve({
+                    id: currency.getId(),
+                    name: currency.getName(),
+                    symbol: currency.getSymbol(),
+                    fullName: currency.getFullName(),
+                    currencyUnitLabel: currency.getCurrencyUnitLabel(),
+                    currencySubunitLabel: currency.getCurrencySubunitLabel()
+                })
+            }
+        })
+    })
+}
+
+
+
 exports.createOrderTicket = async (order_id) => {
     console.log("invoking createOrderTicket");
     console.log("order id: ", order_id);
@@ -98,11 +128,11 @@ exports.createOrderTicket = async (order_id) => {
         clientGrpc.getTicketInstance().createOrderTicket(req, (err, res) => {
             if (!err) {
                 console.log("res: ", res);
-                const result= {
+                const result = {
                     success: res.getSuccess(),
                     message: res.getMessage(),
                 }
-                resolve(res);
+                resolve(result);
             }
             else{
                 console.log("Error createOrderTicket: ", err);
@@ -112,6 +142,38 @@ exports.createOrderTicket = async (order_id) => {
     });
 };
 
+// Sold Ticket
+exports.getTicketsSold = async (eventId) => {
+    console.log('GET_TICKET_SOLD')
+    const req = new TicketTypeByEventRequest()
+        .setEventId(eventId)
+
+    return new Promise((resolve, reject) => {
+        clientGrpc.getTicketInstance().getTicketsList(req, async (err, res) => {
+            if (err) {
+                console.error(`[ERROR] GET_TICKETS_SOLD ==> ${err}`)
+                reject(err)
+            }
+            else {
+                const ticketsSold = res.getTicketLeftList().map(async (ticketSold) => ({
+                    ticket_type_name: ticketSold.getTicketTypeName(),
+                    ticket_type_id: ticketSold.getTicketTypeId(),
+                    ticket_type_qty: ticketSold.getTicketTypeQty(),
+                    is_admission: ticketSold.getIsAdmission(),
+                    price_unit: ticketSold.getPrice(),
+                    currency: await this.getCurrencyBySymbol(CURRENCY_SYMBOL)
+                }))
+
+                resolve({
+                    tickets_left: res.getTicketsLeft(),
+                    message: res.getMessage(),
+                    event_id: res.getEventId(),
+                    tickets_sold: await Promise.all(ticketsSold)
+                })
+            }
+        })
+    })
+}
 
 exports.getTickets = async (req) => {
     console.log("invoking getTickets");

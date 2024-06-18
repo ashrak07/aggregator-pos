@@ -1,18 +1,13 @@
 const grpcClient = require("../../grpc-clients/client.grpc");
 const eventService = require("../event/event.services");
-const {CreateRequest} = require("../../generated_pb/order_pb");
-const {OrderQuery} = require("../../generated_pb/order_pb");
-const {UpdateRequest} = require("../../generated_pb/order_pb");
-const {DeleteRequest} = require("../../generated_pb/order_pb");
-const {CheckQuery} = require("../../generated_pb/order_pb");
-const {FindRequest} = require("../../generated_pb/order_pb");
+const {CreateRequest, OrderQuery, UpdateRequest, DeleteRequest, CheckQuery, FindRequest} = require("../../generated_pb/order_pb");
 
 exports.createOrder = async (order_req) => {
     console.log("invoking createOrder");
     console.log("order_req: ", order_req);
     
     const req =  new CreateRequest()
-        .setName(order_req.name)
+        .setShopId(order_req.shop_id)
         .setPartnerId(order_req.partner_id)
         .setState(order_req.state)
         //.setDateOrder(order_req.date_order)
@@ -25,7 +20,8 @@ exports.createOrder = async (order_req) => {
         .setBuyerName(order_req.buyer_name)
         .setBuyerEmail(order_req.buyer_email)
         .setBuyerPhone(order_req.buyer_phone)
-        ;
+        .setCurrencyId(order_req.currency_id)
+
     console.log("req: ", req);
 
     return new Promise((resolve, reject) => {
@@ -128,9 +124,9 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
     console.log("invoking getOrderByCreateUid");
 
     const req = new OrderQuery()
-    .setId(id)
+    .setCreateUid(id)
     .setPage(page)
-    .setItemsPerPage(nb);
+    .setNb(nb);
 
     console.log("returning promise");
     return new Promise((resolve, reject) => {
@@ -171,17 +167,14 @@ exports.getOrdersByCreateUid = async (id,page,nb) => {
 
 };
 
-exports.findOrder = async (id,buyer_name, page,field_name,field_value,dateFrom,DateTo) => {
+exports.findOrder = async (page, field_name, field_value) => {
     console.log("invoking findOrder");
 
     const req = new FindRequest();
-    req.setId(id)
-    .setBuyerName(buyer_name)
+    req
     .setPage(page)
     .setFieldNameList(field_name)
     .setFieldValueList(field_value)
-    .setDateFrom(dateFrom)
-    .setDateTo(DateTo);
 
     console.log("returning promise");
 
@@ -230,7 +223,6 @@ exports.updateOrder = async (order_req) => {
     .setName(order_req.name)
     .setPartnerId(order_req.partner_id)
     .setState(order_req.state)
-    .setCreateUid(order_req.create_uid)
     .setWriteUid(order_req.write_uid)
     .setAmountTotal(order_req.amount_total)
     .setNote(order_req.note)

@@ -16,7 +16,7 @@ exports.getShopByUserId = async (shop_req,nb,page) => {
 
 
     return new Promise((resolve, reject) => {
-        const call = clientGrpc.getShopInstance().getShopByUserId(req, (err, res) => {
+        clientGrpc.getShopInstance().getShopByUserId(req, (err, res) => {
             if (!err) {
                 const shops = res.getShopsList().map((shop) => ({
                     name: shop.getName(),

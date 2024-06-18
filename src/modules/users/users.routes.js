@@ -9,4 +9,10 @@ router.post(
     usersControllers.login
   );
 
+router.post(
+    '/check_session',
+    usersMiddleware.checkSessionValidate,
+    usersControllers.onChecked
+)
+
 module.exports = router;

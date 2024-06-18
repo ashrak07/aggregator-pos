@@ -23,3 +23,9 @@ router.post(
 );
 
 module.exports = router;
+
+router.get(
+    '/sold/:eventId',
+    usersMiddleware.checkSessionValidate,
+    ticketControllers.getTicketsSold
+)

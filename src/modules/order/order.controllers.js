@@ -54,11 +54,10 @@ exports.findOrder = async (req, res) => {
         const id = req.body.id;
         const buyer_name = req.body.buyer_name;
         const page = req.params.page;
-        const field_name = req.body.field_name;
-        const value = req.body.value;
-        const dateFrom = req.body.dateFrom;
-        const dateTo = req.body.dateTo;
-        const orders = await orderService.findOrder(id,buyer_name,page,field_name,value,dateFrom,dateTo);
+
+        const field_name = ['id', 'buyer_name']
+        const field_value = [id, buyer_name]
+        const orders = await orderService.findOrder(page, field_name, field_value);
         const response = {
             "message": "session ok",
             "data": orders
