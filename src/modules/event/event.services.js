@@ -2,16 +2,17 @@ const clientGrpc = require("../../grpc-clients/client.grpc");
 
 const {ListEventRequest} = require("../../generated_pb/shop_pb");
 const {GetEventRequest, GetEventCategoryRequest} = require("../../generated_pb/event_pb");
+const { getPlannerDataByUserId } = require("../users/users.services");
 
-exports.getEventByShopId = async (shop_req,nb,page) => {
+exports.getEventByShopId = async (shopId, pageSize, page) => {
     console.log("invoking getEventByShopId");
-    console.log("shopId: ", shop_req);
-    console.log("nb: ", nb);
+    console.log("shopId: ", shopId);
+    console.log("pageSize: ", pageSize);
     console.log("page: ", page);
     
     const req =  new ListEventRequest()
-        .setId(shop_req)
-        .setNb(nb)
+        .setId(shopId)
+        .setNb(pageSize)
         .setPage(page);
     console.log("req: ", req);
 
@@ -57,9 +58,12 @@ exports.getEventByShopId = async (shop_req,nb,page) => {
                     }
                     
                     try {
-                      eventData.categories = await this.getEventCategories(event.getCategId())
+                        eventData.categories = await this.getEventCategories(event.getCategId())
+                        const plannerData = await getPlannerDataByUserId(event.getCreateUid())
+                        eventData.workspace_key = plannerData.workspaceKey
+                        eventData.public_workspace_key = plannerData.publicWorkspaceKey
                     } catch (err) {
-                      console.error(err)
+                        console.error(err)
                     }
 
                     return eventData

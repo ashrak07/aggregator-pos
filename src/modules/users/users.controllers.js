@@ -4,9 +4,10 @@ const statusCode = require("../../constants/status-code.constants");
 
 exports.login = async (req, res) => {
     try {
-        const authToken =  await userService.login(req.body);
+        const { authToken, id, name } =  await userService.login(req.body);
 
         return res.status(statusCode["OK"]).json({ 
+            id, name,
             access_token: authToken,
             expires_in: process.env.JWT_EXPIRATION
             ,
@@ -15,4 +16,8 @@ exports.login = async (req, res) => {
         console.log("Error controller login user : ", error);
         return res.status(statusCode["UNAUTHORIZED"]).json({message : "ERROR SERVER", errorMessage : error.message });
     }
+}
+
+exports.onChecked = (_req, res) => {
+    return res.status(statusCode.OK).json({ message: 'SESSION_OK' })
 }

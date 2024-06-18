@@ -290,6 +290,17 @@ function deserialize_event_PlaceAvailableResponse(buffer_arg) {
   return event_pb.PlaceAvailableResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_event_PlaceListRequest(arg) {
+  if (!(arg instanceof event_pb.PlaceListRequest)) {
+    throw new Error('Expected argument of type event.PlaceListRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_event_PlaceListRequest(buffer_arg) {
+  return event_pb.PlaceListRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_event_QueryCalculationRequest(arg) {
   if (!(arg instanceof event_pb.QueryCalculationRequest)) {
     throw new Error('Expected argument of type event.QueryCalculationRequest');
@@ -522,6 +533,17 @@ var EventService = exports.EventService = {
     requestDeserialize: deserialize_event_QueryCalculationRequest,
     responseSerialize: serialize_event_QueryCalculationResponse,
     responseDeserialize: deserialize_event_QueryCalculationResponse,
+  },
+  getPlaceList: {
+    path: '/event.Event/GetPlaceList',
+    requestStream: false,
+    responseStream: false,
+    requestType: event_pb.PlaceListRequest,
+    responseType: event_pb.EventPlaceResponse,
+    requestSerialize: serialize_event_PlaceListRequest,
+    requestDeserialize: deserialize_event_PlaceListRequest,
+    responseSerialize: serialize_event_EventPlaceResponse,
+    responseDeserialize: deserialize_event_EventPlaceResponse,
   },
 };
 

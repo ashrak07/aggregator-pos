@@ -103,6 +103,17 @@ function deserialize_user_UserId(buffer_arg) {
   return user_pb.UserId.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_user_UserList(arg) {
+  if (!(arg instanceof user_pb.UserList)) {
+    throw new Error('Expected argument of type user.UserList');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UserList(buffer_arg) {
+  return user_pb.UserList.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_user_UserLogin(arg) {
   if (!(arg instanceof user_pb.UserLogin)) {
     throw new Error('Expected argument of type user.UserLogin');
@@ -125,6 +136,17 @@ function deserialize_user_UserLoginResponse(buffer_arg) {
   return user_pb.UserLoginResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_user_UserMail(arg) {
+  if (!(arg instanceof user_pb.UserMail)) {
+    throw new Error('Expected argument of type user.UserMail');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UserMail(buffer_arg) {
+  return user_pb.UserMail.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_user_UserModel(arg) {
   if (!(arg instanceof user_pb.UserModel)) {
     throw new Error('Expected argument of type user.UserModel');
@@ -134,6 +156,17 @@ function serialize_user_UserModel(arg) {
 
 function deserialize_user_UserModel(buffer_arg) {
   return user_pb.UserModel.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_user_UserResponse(arg) {
+  if (!(arg instanceof user_pb.UserResponse)) {
+    throw new Error('Expected argument of type user.UserResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_user_UserResponse(buffer_arg) {
+  return user_pb.UserResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_user_UsersGroupRequest(arg) {
@@ -170,6 +203,17 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_user_UserId,
     responseSerialize: serialize_user_UserModel,
     responseDeserialize: deserialize_user_UserModel,
+  },
+  getUserSeatsById: {
+    path: '/user.UserService/getUserSeatsById',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UserId,
+    responseType: user_pb.UserResponse,
+    requestSerialize: serialize_user_UserId,
+    requestDeserialize: deserialize_user_UserId,
+    responseSerialize: serialize_user_UserResponse,
+    responseDeserialize: deserialize_user_UserResponse,
   },
   getUser: {
     path: '/user.UserService/getUser',
@@ -258,6 +302,39 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_user_UsersGroupRequest,
     responseSerialize: serialize_user_UsersGroupResponse,
     responseDeserialize: deserialize_user_UsersGroupResponse,
+  },
+  activateUserPartner: {
+    path: '/user.UserService/ActivateUserPartner',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UserId,
+    responseType: user_pb.UserModel,
+    requestSerialize: serialize_user_UserId,
+    requestDeserialize: deserialize_user_UserId,
+    responseSerialize: serialize_user_UserModel,
+    responseDeserialize: deserialize_user_UserModel,
+  },
+  getUserByMail: {
+    path: '/user.UserService/GetUserByMail',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UserMail,
+    responseType: user_pb.UserModel,
+    requestSerialize: serialize_user_UserMail,
+    requestDeserialize: deserialize_user_UserMail,
+    responseSerialize: serialize_user_UserModel,
+    responseDeserialize: deserialize_user_UserModel,
+  },
+  listUserByCreateuid: {
+    path: '/user.UserService/listUserByCreateuid',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UserId,
+    responseType: user_pb.UserList,
+    requestSerialize: serialize_user_UserId,
+    requestDeserialize: deserialize_user_UserId,
+    responseSerialize: serialize_user_UserList,
+    responseDeserialize: deserialize_user_UserList,
   },
 };
 

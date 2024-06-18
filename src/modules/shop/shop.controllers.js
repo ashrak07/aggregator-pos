@@ -8,7 +8,7 @@ exports.getShopByUserId = async (req, res) => {
         const nb = req.params.nb;
         const page = req.params.page;
 
-        console.log('Get Shop By User Id')
+        console.log('Get Shop By User Id ==> ' + user_id)
 
         const ListShop = await shopService.getShopByUserId(user_id,nb,page);
         const response = {

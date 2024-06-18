@@ -65,4 +65,18 @@ exports.generateTicketPdf = async (req, res) => {
     } catch (error) {
         
     }
-};
+}
+
+exports.getTicketsSold = async (req, res) => {
+    try {
+        const eventId = req.params.eventId
+        const response = await ticketService.getTicketsSold(eventId)
+        console.log(response)
+        return res.status(statusCode['OK']).json(response)
+    } catch (err) {
+        res.status(statusCode['INTERNAL_SERVER_ERROR']).json({
+            message: 'ERROR SERVER',
+            error: err.message
+        })
+    }
+}

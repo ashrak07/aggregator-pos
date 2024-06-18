@@ -3,11 +3,11 @@ const statusCode = require("../constants/status-code.constants");
 
 module.exports.listEventByShopIdValidate = async (req, res, next) => {
     try {
-        const id = { 
-            shop_id: req.body.shop_id
+        const queryParams = { 
+            shopId: req.query.shopId
         };
 
-        await shopIdSchema.validateAsync(id);
+        await shopIdSchema.validateAsync(queryParams);
 
         next();
     } catch (error) {

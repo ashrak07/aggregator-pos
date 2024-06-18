@@ -13,8 +13,8 @@ router.post(
     shopControllers.getShopByUserId
   );
 
-router.post(
-    "/events/:page?/:nb?",
+router.get(
+    "/events",
     eventMiddleware.listEventByShopIdValidate,
     usersMiddleware.checkSessionValidate,
     eventControllers.getEventByShopId

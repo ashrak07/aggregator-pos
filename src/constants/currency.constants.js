@@ -1,0 +1,1 @@
+exports.CURRENCY_SYMBOL = 'MGA'

@@ -125,6 +125,17 @@ function deserialize_order_MaxUsageResponse(buffer_arg) {
   return order_pb.MaxUsageResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_order_OrderPlannerQuery(arg) {
+  if (!(arg instanceof order_pb.OrderPlannerQuery)) {
+    throw new Error('Expected argument of type order.OrderPlannerQuery');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_order_OrderPlannerQuery(buffer_arg) {
+  return order_pb.OrderPlannerQuery.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_order_OrderQuery(arg) {
   if (!(arg instanceof order_pb.OrderQuery)) {
     throw new Error('Expected argument of type order.OrderQuery');
@@ -335,6 +346,17 @@ var OrderService = exports.OrderService = {
     requestDeserialize: deserialize_order_GetQuery,
     responseSerialize: serialize_order_Response,
     responseDeserialize: deserialize_order_Response,
+  },
+  getOrderPlanner: {
+    path: '/order.Order/getOrderPlanner',
+    requestStream: false,
+    responseStream: false,
+    requestType: order_pb.OrderPlannerQuery,
+    responseType: order_pb.OrderResponse,
+    requestSerialize: serialize_order_OrderPlannerQuery,
+    requestDeserialize: deserialize_order_OrderPlannerQuery,
+    responseSerialize: serialize_order_OrderResponse,
+    responseDeserialize: deserialize_order_OrderResponse,
   },
   filterOrder: {
     path: '/order.Order/filterOrder',
