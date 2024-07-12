@@ -15,6 +15,7 @@ exports.login = async (user) => {
         console.log("error: ", err);
         reject(err);
       } else {
+        console.log(res)
         resolve({
             authToken: res.getToken(),
             id: res.getId(),
